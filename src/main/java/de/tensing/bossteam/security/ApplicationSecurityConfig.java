@@ -39,6 +39,27 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/player/7").hasRole(P7.name())
                 .antMatchers("/player/8").hasRole(P8.name())
                 .antMatchers("/player/9").hasRole(P9.name())
+                .antMatchers("/player/10").hasRole(P10.name())
+                .antMatchers("/player/11").hasRole(P11.name())
+                .antMatchers("/player/12").hasRole(P12.name())
+                .antMatchers("/player/13").hasRole(P13.name())
+                .antMatchers("/player/14").hasRole(P14.name())
+                .antMatchers("/player/15").hasRole(P15.name())
+                .antMatchers("/player/16").hasRole(P16.name())
+                .antMatchers("/player/17").hasRole(P17.name())
+                .antMatchers("/player/18").hasRole(P18.name())
+                .antMatchers("/player/19").hasRole(P19.name())
+                .antMatchers("/player/20").hasRole(P20.name())
+                .antMatchers("/player/21").hasRole(P21.name())
+                .antMatchers("/player/22").hasRole(P22.name())
+                .antMatchers("/player/23").hasRole(P23.name())
+                .antMatchers("/player/24").hasRole(P24.name())
+                .antMatchers("/player/25").hasRole(P25.name())
+                .antMatchers("/player/26").hasRole(P26.name())
+                .antMatchers("/player/27").hasRole(P27.name())
+                .antMatchers("/player/28").hasRole(P28.name())
+                .antMatchers("/player/29").hasRole(P29.name())
+                .antMatchers("/player/30").hasRole(P30.name())
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -57,7 +78,6 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     protected UserDetailsService userDetailsService() {
         UserDetails bossTeamUser = createNewUser("bossteam", "bittekeinbit3", BOSSTEAMER);
         UserDetails jannismfUser = createNewUser("jannismf", "s0nnenschule", ADMIN);
-
         UserDetails p1User = createNewUser("p1", "rennen", P1);
         UserDetails p2User = createNewUser("p2", "laib", P2);
         UserDetails p3User = createNewUser("p3", "abendessen", P3);
