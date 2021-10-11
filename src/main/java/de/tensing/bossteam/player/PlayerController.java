@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 @RestController
-@RequestMapping("api/v1/player")
+@RequestMapping("player")
 public class PlayerController {
 
     private static final int numberOfPlayers = 30;
