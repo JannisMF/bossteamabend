@@ -29,6 +29,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
+                .antMatchers("/**").hasRole(ADMIN.name())
                 .antMatchers("/player/*").hasRole(BOSSTEAMER.name())
                 .antMatchers("/player/1").hasRole(P1.name())
                 .antMatchers("/player/2").hasRole(P2.name())
@@ -65,6 +66,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .httpBasic();
     }
+
     private UserDetails createNewUser(String username, String password, ApplicationUserRole role) {
         return User.builder()
                 .username(username)

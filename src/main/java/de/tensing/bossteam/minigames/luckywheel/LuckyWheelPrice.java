@@ -1,6 +1,7 @@
 package de.tensing.bossteam.minigames.luckywheel;
 
 public enum LuckyWheelPrice {
+    TEST("TEST");
     // TODO: implement prices
 
     private final String price;
