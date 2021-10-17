@@ -16,7 +16,7 @@
         let armor = /*[[${armor}]]*/ "t";
         /*]]>*/
 
-        let size = "20px";
+        let size = "40px";
         let imgHealthFilled = document.createElement("img");
         let imgHealthEmpty = document.createElement("img");
         let imgFoodFilled = document.createElement("img");
@@ -45,28 +45,21 @@
 
         let playerDiv = "";
         let playerNameDiv = ""
-        if (playerId < 10) {
-            playerNameDiv =
-                "<div style=\"display:inline;\"> " +
-                "<p style=\"font-size:20pt;display:inline;padding-right:25px;font-family: monospace;\">Spieler " + playerId + "</p>" +
-                "</div>";
-        } else {
-            playerNameDiv =
-                "<div style=\"display:inline;\"> " +
-                "<p style=\"font-size:20pt;display:inline;padding-right:10px;font-family: monospace;\">Spieler " + playerId + "</p>" +
-                "</div>";
-        }
+        playerNameDiv =
+            "<div style=\"display:inline;\"> " +
+            "<p style=\"font-size:40pt;display:inline;font-family: monospace;\">Spieler " + playerId + "</p><br><br>" +
+            "</div>";
         let playerAttributesDiv = "<div style=display:inline;><div style='padding-right: 10px;'>";
         for (let j = 1; j < 11; j++) {
             playerAttributesDiv +=
                 "<div id=\"p" + playerId + "h" + j + "\" style=\"display:inline;\"></div>";
         }
-        playerAttributesDiv += "</div><div style='padding-right: 10px;'>";
+        playerAttributesDiv += "</div><br><div style='padding-right: 10px;'>";
         for (let j = 1; j < 11; j++) {
             playerAttributesDiv +=
                 "<div id=\"p" + playerId + "f" + j + "\" style=\"display:inline;\"></div>";
         }
-        playerAttributesDiv += "</div><div style='padding-right: 10px;'>";
+        playerAttributesDiv += "</div><br><div style='padding-right: 10px;'>";
         for (let j = 1; j < 11; j++) {
             playerAttributesDiv +=
                 "<div id=\"p" + playerId + "a" + j + "\" style=\"display:inline;\"></div>";
@@ -105,6 +98,7 @@
         }
     </script>
 </div>
+<br>
 <input
         type="image"
         style="height:100px;width:450px"
