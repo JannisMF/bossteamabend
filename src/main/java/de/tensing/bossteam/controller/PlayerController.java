@@ -1,19 +1,12 @@
 package de.tensing.bossteam.controller;
 
-import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.router.Route;
 import de.tensing.bossteam.entities.Player;
-import org.checkerframework.checker.units.qual.C;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.websocket.ClientEndpoint;
 
 import static de.tensing.bossteam.entities.Game.PLAYERS_LIST;
 
@@ -26,65 +19,74 @@ public class PlayerController extends Div {
         Player p = PLAYERS_LIST.stream()
                 .filter(player -> playerId.equals(player.getPlayerId()))
                 .findFirst()
-                .orElseThrow(() -> new IllegalStateException("Player " + playerId + " does not exist."));
+                .orElseThrow(() -> new IllegalStateException("Player " + playerId + " existiert nicht."));
         ModelAndView mav = new ModelAndView("player");
-        mav.addObject("playerId", "Spieler " + p.getPlayerId());
-        mav.addObject("health", "Leben: " + p.getHealth());
-        mav.addObject("food", "Essen: " + p.getFood());
-        mav.addObject("armor", "Armor: " + p.getArmor());
+        mav.addObject("playerId", p.getPlayerId());
+        mav.addObject("health", p.getHealth());
+        mav.addObject("food", p.getFood());
+        mav.addObject("armor", p.getArmor());
         return mav;
     }
 
-    public void addHealth(String playerIdString) {
-        Player player = PLAYERS_LIST.get(getIntOfString(playerIdString) - 1);
-        if (player.getHealth() < 10) {
-            player.setHealth(player.getHealth() + 1);
+    @GetMapping(path = "{playerId}/addHealth")
+    public String addHealth(@PathVariable("playerId") Integer playerId) {
+        Player p = PLAYERS_LIST.get(playerId - 1);
+        if (p.getHealth() < 10) {
+            p.setHealth(p.getHealth() + 1);
+            return "Das Leben von Spieler " + playerId + " wurde auf " + p.getHealth() + " gesetzt.";
         }
+        return "Das Leben von Spieler " + playerId + " kann nicht höher als 10 werden.";
     }
 
-    public void removeHealth(String playerIdString) {
-        Player player = PLAYERS_LIST.get(getIntOfString(playerIdString) - 1);
-        if (player.getArmor() > 0) {
-            player.setArmor(player.getArmor() - 1);
-        } else if (player.getHealth() > 0) {
-            player.setHealth(player.getHealth() - 1);
+    @GetMapping(path = "{playerId}/removeHealth")
+    public String removeHealth(@PathVariable("playerId") Integer playerId) {
+        Player p = PLAYERS_LIST.get(playerId - 1);
+        if (p.getArmor() > 0) {
+            p.setArmor(p.getArmor() - 1);
+            return "Der Spieler " + playerId + " hat Rüstung. Die Rüstung wurde auf " + p.getArmor() + " gesetzt.";
+        } else if (p.getHealth() > 0) {
+            p.setHealth(p.getHealth() - 1);
         }
-
-        if (player.getHealth() == 0) {
-            // TODO: Spieler ist Tod
+        if (p.getHealth() == 0) {
+            return "TOT! Der Spieler " + playerId + " ist gestorben.";
         }
+        return "Das Leben von Spieler " + playerId + " wurde auf " + p.getHealth() + " gesetzt.";
     }
 
-    public void fillFood(String playerIdString) {
-        Player player = PLAYERS_LIST.get(getIntOfString(playerIdString) - 1);
-        if (player.getFood() < 10) {
-            player.setFood(player.getFood() + 1);
+    @GetMapping(path = "{playerId}/fillFood")
+    public String fillFood(@PathVariable("playerId") Integer playerId) {
+        Player p = PLAYERS_LIST.get(playerId - 1);
+        if (p.getFood() < 10) {
+            p.setFood(10);
+            return "Das Essen von Spieler " + playerId + " wurde auf wieder aufgefüllt.";
         }
+        return "Das Essen von Spieler " + playerId + " ist bereits aufgefüllt.";
     }
 
-    public void removeFood(String playerIdString) {
-        Player player = PLAYERS_LIST.get(getIntOfString(playerIdString) - 1);
-        if (player.getFood() > 0) {
-            player.setFood(player.getFood() - 1);
-        } else if (player.getFood() == 0) {
-            if (player.getFood() > 0) {
-                player.setFood(player.getFood() - 1);
+    @GetMapping(path = "{playerId}/removeFood")
+    public String removeFood(@PathVariable("playerId") Integer playerId) {
+        Player p = PLAYERS_LIST.get(playerId - 1);
+        if (p.getFood() > 0) {
+            p.setFood(p.getFood() - 1);
+            return "Das Essen von Spieler " + playerId + " wurde auf " + p.getFood() + " gesetzt.";
+        } else if (p.getFood() == 0) {
+            if (p.getHealth() > 0) {
+                p.setHealth(p.getHealth() - 1);
             }
-            if (player.getFood() == 0) {
-                // TODO: Spieler ist Tod.
+            if (p.getHealth() == 0) {
+                return "TOT! Der Spieler " + playerId + " ist gestorben.";
             }
         }
+        return "Der Spieler " + playerId + " hat kein Essen mehr. Das Leben wurde auf " + p.getHealth() + " gesetzt.";
     }
 
-    public void addArmor(String playerIdString) {
-        Player player = PLAYERS_LIST.get(getIntOfString(playerIdString) - 1);
-        if (player.getArmor() < 10) {
-            player.setArmor(player.getArmor() + 1);
+    @GetMapping(path = "{playerId}/addArmor")
+    public String addArmor(@PathVariable("playerId") Integer playerId) {
+        Player p = PLAYERS_LIST.get(playerId - 1);
+        if (p.getArmor() < 10) {
+            p.setArmor(p.getArmor() + 1);
+            return "Die Rüstung von Spieler " + playerId + " wurde auf " + p.getArmor() + " gesetzt.";
         }
-    }
-
-    private Integer getIntOfString(String s) {
-        String[] split = s.split(" ");
-        return Integer.getInteger(split[1]);
+        return "Die Rüstung von Spieler " + playerId + " kann nicht höher als 10 werden.";
     }
 }
