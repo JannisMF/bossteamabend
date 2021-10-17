@@ -6,20 +6,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.web.util.UrlPathHelper;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 import static de.tensing.bossteam.security.ApplicationUserRole.*;
 
@@ -38,49 +30,51 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "index", "/css/*", "/js/*", "player/1").permitAll()
+                .antMatchers("/", "/index", "/error**", "/css/*", "/js/*", "/img/*").permitAll()
+                .antMatchers("/player/1").hasAnyRole(P1.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/2").hasAnyRole(P2.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/3").hasAnyRole(P3.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/4").hasAnyRole(P4.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/5").hasAnyRole(P5.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/6").hasAnyRole(P6.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/7").hasAnyRole(P7.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/8").hasAnyRole(P8.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/9").hasAnyRole(P9.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/10").hasAnyRole(P10.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/11").hasAnyRole(P11.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/12").hasAnyRole(P12.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/13").hasAnyRole(P13.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/14").hasAnyRole(P14.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/15").hasAnyRole(P15.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/16").hasAnyRole(P16.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/17").hasAnyRole(P17.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/18").hasAnyRole(P18.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/19").hasAnyRole(P19.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/20").hasAnyRole(P20.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/21").hasAnyRole(P21.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/22").hasAnyRole(P22.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/23").hasAnyRole(P23.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/24").hasAnyRole(P24.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/25").hasAnyRole(P25.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/26").hasAnyRole(P26.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/27").hasAnyRole(P27.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/28").hasAnyRole(P28.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/29").hasAnyRole(P29.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/30").hasAnyRole(P30.name(), BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/player/**").hasAnyRole(BOSSTEAMER.name(), ADMIN.name())
                 .antMatchers("/**").hasRole(ADMIN.name())
-                .antMatchers("/player/*").hasRole(BOSSTEAMER.name())
-                .antMatchers("/player/1").hasRole(P1.name())
-                .antMatchers("/player/2").hasRole(P2.name())
-                .antMatchers("/player/3").hasRole(P3.name())
-                .antMatchers("/player/4").hasRole(P4.name())
-                .antMatchers("/player/5").hasRole(P5.name())
-                .antMatchers("/player/6").hasRole(P6.name())
-                .antMatchers("/player/7").hasRole(P7.name())
-                .antMatchers("/player/8").hasRole(P8.name())
-                .antMatchers("/player/9").hasRole(P9.name())
-                .antMatchers("/player/10").hasRole(P10.name())
-                .antMatchers("/player/11").hasRole(P11.name())
-                .antMatchers("/player/12").hasRole(P12.name())
-                .antMatchers("/player/13").hasRole(P13.name())
-                .antMatchers("/player/14").hasRole(P14.name())
-                .antMatchers("/player/15").hasRole(P15.name())
-                .antMatchers("/player/16").hasRole(P16.name())
-                .antMatchers("/player/17").hasRole(P17.name())
-                .antMatchers("/player/18").hasRole(P18.name())
-                .antMatchers("/player/19").hasRole(P19.name())
-                .antMatchers("/player/20").hasRole(P20.name())
-                .antMatchers("/player/21").hasRole(P21.name())
-                .antMatchers("/player/22").hasRole(P22.name())
-                .antMatchers("/player/23").hasRole(P23.name())
-                .antMatchers("/player/24").hasRole(P24.name())
-                .antMatchers("/player/25").hasRole(P25.name())
-                .antMatchers("/player/26").hasRole(P26.name())
-                .antMatchers("/player/27").hasRole(P27.name())
-                .antMatchers("/player/28").hasRole(P28.name())
-                .antMatchers("/player/29").hasRole(P29.name())
-                .antMatchers("/player/30").hasRole(P30.name())
                 .anyRequest()
                 .authenticated()
+                .and()
+                .exceptionHandling().accessDeniedPage("/error403.html")
                 .and()
                 .httpBasic()
                 .and()
                 .logout()
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/index.html")
-                    .deleteCookies("JSESSIONID")
-                    .invalidateHttpSession(true);
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/index.html")
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true);
     }
 
     private UserDetails createNewUser(String username, String password, ApplicationUserRole role) {

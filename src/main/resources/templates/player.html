@@ -7,10 +7,18 @@
     <script type="text/javascript" src="/js/computePlayer.js"></script>
 </head>
 <body>
-<p style="font-size:40pt;" th:text="${playerId}">Spieler</p>
-<p style="font-size:30pt" th:text="${health}">Hier könnte Ihr Leben stehen</p>
-<p style="font-size:30pt" th:text="${food}">Hier könnte Ihr Essen stehen</p>
-<p style="font-size:30pt" th:text="${armor}">Hier könnte Ihre Rüstung stehen</p>
+<p style="font-size:40pt;display:inline;">Spieler: </p>
+<p style="font-size:40pt;display:inline;" th:text="${playerId}"></p>
+<br><br>
+<p style="font-size:30pt;display:inline;">Leben: </p>
+<p style="font-size:30pt;display:inline;" th:text="${health}">Hier könnte Ihr Leben stehen</p>
+<br><br>
+<p style="font-size:30pt;display:inline;">Essen: </p>
+<p style="font-size:30pt;display:inline;" th:text="${food}">Hier könnte Ihr Essen stehen</p>
+<br><br>
+<p style="font-size:30pt;display:inline;">Rüstung: </p>
+<p style="font-size:30pt;display:inline;" th:text="${armor}">Hier könnte Ihre Rüstung stehen</p>
+<br><br>
 <input
         type="image"
         style="height:100px;width:450px"
@@ -21,28 +29,28 @@
 <input
         type="image"
         style="height:100px;width:450px"
-        onclick='removeHealth()'
+        th:attr="onclick=|removeHealth('${playerId}')|"
         src="/img/RemoveHealth.png">
 </input>
 <br><br>
 <input
         type="image"
         style="height:100px;width:450px"
-        onclick='fillFood()'
+        th:attr="onclick=|fillFood('${playerId}')|"
         src="/img/FillFood.png">
 </input>
 <br><br>
 <input
         type="image"
         style="height:100px;width:450px"
-        onclick='removeFood()'
+        th:attr="onclick=|removeFood('${playerId}')|"
         src="/img/RemoveFood.png">
 </input>
 <br><br>
 <input
         type="image"
         style="height:100px;width:450px"
-        onclick='addArmor()'
+        th:attr="onclick=|addArmor('${playerId}')|"
         src="/img/addArmor.png">
 </input>
 </body>

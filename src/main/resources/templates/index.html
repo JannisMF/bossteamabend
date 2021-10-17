@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="utf-8" name="viewport"
+          content="width=device-width, initial-scale=0.6, maximum-scale=0.6, user-scalable=0">
+    <meta http-equiv="refresh" content="2">
+    <title>Überblick</title>
+</head>
+<body style="background-color: lightgray">
+<div id="playersDiv">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        let playerList = /*[[${playerList}]]*/ "t";
+        /*]]>*/
+
+
+        let size = "20px";
+        let imgHealthFilled = document.createElement("img");
+        let imgHealthEmpty = document.createElement("img");
+        let imgFoodFilled = document.createElement("img");
+        let imgFoodEmpty = document.createElement("img");
+        let imgArmorFilled = document.createElement("img");
+        let imgArmorEmpty = document.createElement("img");
+
+        imgHealthFilled.src = "img/HealthFilled.png";
+        imgHealthFilled.style.width = size;
+        imgHealthFilled.style.height = size;
+        imgHealthEmpty.src = "img/HealthEmpty.png";
+        imgHealthEmpty.style.width = size;
+        imgHealthEmpty.style.height = size;
+        imgFoodFilled.src = "img/FoodFilled.png";
+        imgFoodFilled.style.width = size;
+        imgFoodFilled.style.height = size;
+        imgFoodEmpty.src = "img/FoodEmpty.png";
+        imgFoodEmpty.style.width = size;
+        imgFoodEmpty.style.height = size;
+        imgArmorFilled.src = "img/ArmorFilled.png";
+        imgArmorFilled.style.width = size;
+        imgArmorFilled.style.height = size;
+        imgArmorEmpty.src = "img/ArmorEmpty.png";
+        imgArmorEmpty.style.width = size;
+        imgArmorEmpty.style.height = size;
+
+        // Fill Divs
+        let playersDiv = "";
+        for (let i = 0; i < playerList.length; i++) {
+            let playerId = i + 1;
+            let playerDiv = "";
+            let playerNameDiv = ""
+            if (playerId < 10) {
+                playerNameDiv =
+                    "<div style=\"display:inline;\"> " +
+                    "<p style=\"font-size:20pt;display:inline;padding-right:25px;font-family: monospace;\">Spieler " + playerId + "</p>" +
+                    "</div>";
+            } else {
+                playerNameDiv =
+                    "<div style=\"display:inline;\"> " +
+                    "<p style=\"font-size:20pt;display:inline;padding-right:10px;font-family: monospace;\">Spieler " + playerId + "</p>" +
+                    "</div>";
+            }
+            let playerAttributesDiv = "<div style=display:inline;><div style='padding-right: 10px;display:inline;'>";
+            for (let j = 1; j < 11; j++) {
+                playerAttributesDiv +=
+                    "<div id=\"p" + playerId + "h" + j + "\" style=\"display:inline;\"></div>";
+            }
+            playerAttributesDiv += "</div><div style='padding-right: 10px;display:inline;'>";
+            for (let j = 1; j < 11; j++) {
+                playerAttributesDiv +=
+                    "<div id=\"p" + playerId + "f" + j + "\" style=\"display:inline;\"></div>";
+            }
+            playerAttributesDiv += "</div><div style='padding-right: 10px;display:inline;'>";
+            for (let j = 1; j < 11; j++) {
+                playerAttributesDiv +=
+                    "<div id=\"p" + playerId + "a" + j + "\" style=\"display:inline;\"></div>";
+            }
+            playerAttributesDiv += "</div></div>";
+            playerDiv = "<div>" + playerNameDiv + playerAttributesDiv + "</div>";
+            playersDiv += playerDiv;
+        }
+        document.getElementById("playersDiv").innerHTML = playersDiv;
+
+
+        // Fill Imgs
+        for (let i = 0; i < playerList.length; i++) {
+            let playerId = i + 1;
+            let player = playerList[i];
+            let health = player["health"];
+            let food = player["food"];
+            let armor = player["armor"];
+            for (let k = 0; k < 11; k++) {
+                for (let j = 1; j < 11; j++) {
+                    if (health == k) {
+                        let elemString = "p" + playerId + "h" + j
+                        if (health < j) {
+                            document.getElementById(elemString).appendChild(imgHealthEmpty.cloneNode(true));
+                        } else {
+                            document.getElementById(elemString).appendChild(imgHealthFilled.cloneNode(true));
+                        }
+                    }
+                    if (food == k) {
+                        let elemString = "p" + playerId + "f" + j
+                        if (food < j) {
+                            document.getElementById(elemString).appendChild(imgFoodEmpty.cloneNode(true));
+                        } else {
+                            document.getElementById(elemString).appendChild(imgFoodFilled.cloneNode(true));
+                        }
+                    }
+                    if (armor == k) {
+                        let elemString = "p" + playerId + "a" + j
+                        if (armor < j) {
+                            document.getElementById(elemString).appendChild(imgArmorEmpty.cloneNode(true));
+                        } else {
+                            document.getElementById(elemString).appendChild(imgArmorFilled.cloneNode(true));
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</div>
+</body>
+</html>
