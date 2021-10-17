@@ -9,8 +9,8 @@
 </head>
 <body style="background-color: lightgray">
 <div>
-    <div id="progressBarMask" style="width: 100%;background-color:gray;">
-        <div id="progressBar" style="width: 0%;height:40px;background-color: green"></div>
+    <div id="progressBarMask" style="width:100%;background-color:gray;">
+        <div id="progressBar" style="width:0%;height:40px;background-color: green"></div>
     </div>
     <br><br>
     <div>
@@ -37,7 +37,8 @@
             let maxProgress = /*[[${maxProgress}]]*/ "t";
             /*]]>*/
 
-            let progressBarWidth = progress / maxProgress
+            let progressBarWidth = parseInt(progress) / maxProgress
+            window.console.log(progressBarWidth)
             let elem = document.getElementById("progressBar")
             elem.style.width = progressBarWidth + "%"
 
