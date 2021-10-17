@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="utf-8" name="viewport"
-          content="width=device-width, initial-scale=0.6, maximum-scale=0.6, user-scalable=0">
+    <meta charset="utf-8" content="width=device-width, initial-scale=0.6, maximum-scale=0.6, user-scalable=0"
+          name="viewport">
     <meta http-equiv="refresh" content="2">
     <title>Überblick</title>
 </head>
@@ -13,7 +13,7 @@
         let playerList = /*[[${playerList}]]*/ "t";
         /*]]>*/
 
-        let size = "20px";
+        let size = "40px";
         let imgHealthFilled = document.createElement("img");
         let imgHealthEmpty = document.createElement("img");
         let imgFoodFilled = document.createElement("img");
@@ -46,17 +46,10 @@
             let playerId = i + 1;
             let playerDiv = "";
             let playerNameDiv = ""
-            if (playerId < 10) {
-                playerNameDiv =
-                    "<div style=\"display:inline;\"> " +
-                    "<p style=\"font-size:20pt;display:inline;padding-right:25px;font-family: monospace;\">Spieler " + playerId + "</p>" +
-                    "</div>";
-            } else {
-                playerNameDiv =
-                    "<div style=\"display:inline;\"> " +
-                    "<p style=\"font-size:20pt;display:inline;padding-right:10px;font-family: monospace;\">Spieler " + playerId + "</p>" +
-                    "</div>";
-            }
+            playerNameDiv =
+                "<div style=\"display:inline;\"> " +
+                "<p style=\"font-size:40pt;display:inline;font-family: monospace;\">Spieler " + playerId + "</p>" +
+                "</div>";
             let playerAttributesDiv = "<div style=display:inline;><div style='padding-right: 10px;display:inline;'>";
             for (let j = 1; j < 11; j++) {
                 playerAttributesDiv +=
