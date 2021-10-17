@@ -6,7 +6,7 @@
     <title th:text="${playerId}">Hier könnte Ihre Werbung stehen</title>
     <script type="text/javascript" src="/js/computePlayer.js"></script>
 </head>
-<body>
+<body style="background-color: lightgray">
 <p style="font-size:40pt;display:inline;">Spieler: </p>
 <p style="font-size:40pt;display:inline;" th:text="${playerId}"></p>
 <br><br>
@@ -51,7 +51,7 @@
         type="image"
         style="height:100px;width:450px"
         th:attr="onclick=|addArmor('${playerId}')|"
-        src="/img/addArmor.png">
+        src="/img/AddArmor.png">
 </input>
 </body>
 </html>
