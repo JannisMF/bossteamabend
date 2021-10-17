@@ -1,9 +1,6 @@
 package de.tensing.bossteam.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,11 +9,11 @@ import java.util.stream.IntStream;
 import static de.tensing.bossteam.settings.Settings.*;
 
 public class Game {
+    public static List<Player> PLAYERS_LIST = new ArrayList<>();
+
     public static Integer PROGRESS = START_PROGRESS;
 
     public static Date START_TIME;
-
-    public static List<Player> PLAYERS_LIST = new ArrayList<>();
 
     static {
         IntStream

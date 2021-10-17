@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="utf-8" name="viewport"
+          content="width=device-width, initial-scale=0.6, maximum-scale=0.6, user-scalable=0">
+    <title>Überblick</title>
+</head>
+<body>
+<div>
+    <div>
+        <p style="font-size:10pt;display:inline;">Spieler: 1</p>
+    </div>
+    <div>
+        <div>
+            <p style="font-size:30pt;display:inline;">Leben: </p>
+        </div>
+        <div>
+            <div id="p1h1" style="height:100px;width:100px"></div>
+            <div id="p1h2"></div>
+            <div id="p1h3"></div>
+            <div id="p1h4"></div>
+            <div id="p1h5"></div>
+            <div id="p1h6"></div>
+            <div id="p1h7"></div>
+            <div id="p1h8"></div>
+            <div id="p1h9"></div>
+            <div id="p1h10"></div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        let playerList = /*[[${playerList}]]*/ "t";
+        /*]]>*/
+        let player = playerList[0];
+        let health = player["health"];
+        window.console.log(health);
+        let imgHealthFilled = document.createElement("img");
+        let imgHealthEmpty = document.createElement("img");
+        imgHealthFilled.src = "/img/HealthFilled.png";
+        imgHealthEmpty.src = "/img/HealthEmpty.png";
+        document.getElementById("p1h1").appendChild(imgHealthFilled);
+        switch (true) {
+            case (health = 10):
+                document.getElementById("p1h1").appendChild(imgHealthFilled);
+                document.getElementById("p1h2").appendChild(imgHealthFilled);
+                document.getElementById("p1h3").appendChild(imgHealthFilled);
+                document.getElementById("p1h4").appendChild(imgHealthFilled);
+                document.getElementById("p1h5").appendChild(imgHealthFilled);
+                document.getElementById("p1h6").appendChild(imgHealthFilled);
+                document.getElementById("p1h7").appendChild(imgHealthFilled);
+                document.getElementById("p1h8").appendChild(imgHealthFilled);
+                document.getElementById("p1h9").appendChild(imgHealthFilled);
+                document.getElementById("p1h10").appendChild(imgHealthFilled);
+                break;
+        }
+    </script>
+</div>
+<br><br>
+<p style="font-size:30pt;display:inline;">Essen: </p>
+<p style="font-size:30pt;display:inline;" th:text="${food}">Hier könnte Ihr Essen stehen</p>
+<br><br>
+<p style="font-size:30pt;display:inline;">Rüstung: </p>
+<p style="font-size:30pt;display:inline;" th:text="${armor}">Hier könnte Ihre Rüstung stehen</p>
+<br><br>
+<input
+        type="image"
+        style="height:100px;width:450px"
+        th:attr="onclick=|addHealth('${playerId}')|"
+        src="/img/AddHealth.png">
+</input>
+<br><br>
+<input
+        type="image"
+        style="height:100px;width:450px"
+        th:attr="onclick=|removeHealth('${playerId}')|"
+        src="/img/RemoveHealth.png">
+</input>
+<br><br>
+<input
+        type="image"
+        style="height:100px;width:450px"
+        th:attr="onclick=|fillFood('${playerId}')|"
+        src="/img/FillFood.png">
+</input>
+<br><br>
+<input
+        type="image"
+        style="height:100px;width:450px"
+        th:attr="onclick=|removeFood('${playerId}')|"
+        src="/img/RemoveFood.png">
+</input>
+<br><br>
+<input
+        type="image"
+        style="height:100px;width:450px"
+        th:attr="onclick=|addArmor('${playerId}')|"
+        src="/img/addArmor.png">
+</input>
+</body>
+</html>
