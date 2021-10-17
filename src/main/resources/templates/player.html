@@ -1,48 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org/">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title th:text="${playerId}"></title>
+    <meta charset="utf-8" name="viewport"
+          content="width=device-width, initial-scale=0.6, maximum-scale=0.6, user-scalable=0">
+    <title th:text="${playerId}">Hier könnte Ihre Werbung stehen</title>
+    <script type="text/javascript" src="/js/computePlayer.js"></script>
 </head>
 <body>
-<p style="font-size:40pt;" th:text="${playerId}"></p>
-<p style="font-size:30pt" id="healthBar01">10 Health</p>
-<p style="font-size:30pt" id="hungerBar01">10 Food</p>
-<p style="font-size:30pt" id="armorBar01">0 Armor</p>
-<form action="#" th:action="@{/addHealth}" th:object="$player" method="GET">
-    <input
-            type="image"
-            style="height:100px;width:450px"
-            src="https://tswebaccount.z1.web.core.windows.net/IMG/Add_HP.png">
-    </input>
-</form>
-<br><br>
+<p style="font-size:40pt;" th:text="${playerId}">Spieler</p>
+<p style="font-size:30pt" th:text="${health}">Hier könnte Ihr Leben stehen</p>
+<p style="font-size:30pt" th:text="${food}">Hier könnte Ihr Essen stehen</p>
+<p style="font-size:30pt" th:text="${armor}">Hier könnte Ihre Rüstung stehen</p>
 <input
         type="image"
         style="height:100px;width:450px"
-        onclick='removeHpPlayer01()'
-        src="https://tswebaccount.z1.web.core.windows.net/IMG/Remove_HP.png">
+        th:attr="onclick=|addHealth('${playerId}')|"
+        src="/img/AddHealth.png">
 </input>
 <br><br>
 <input
         type="image"
         style="height:100px;width:450px"
-        onclick='addHungerpPlayer01()'
-        src="https://tswebaccount.z1.web.core.windows.net/IMG/Fill_HungerP.png">
+        onclick='removeHealth()'
+        src="/img/RemoveHealth.png">
 </input>
 <br><br>
 <input
         type="image"
         style="height:100px;width:450px"
-        onclick='removeHungerpPlayer01()'
-        src="https://tswebaccount.z1.web.core.windows.net/IMG/Remove_HungerP.png">
+        onclick='fillFood()'
+        src="/img/FillFood.png">
 </input>
 <br><br>
 <input
         type="image"
         style="height:100px;width:450px"
-        onclick='addApPlayer01()'
-        src="https://tswebaccount.z1.web.core.windows.net/IMG/Add_AP.png">
+        onclick='removeFood()'
+        src="/img/RemoveFood.png">
+</input>
+<br><br>
+<input
+        type="image"
+        style="height:100px;width:450px"
+        onclick='addArmor()'
+        src="/img/addArmor.png">
 </input>
 </body>
 </html>

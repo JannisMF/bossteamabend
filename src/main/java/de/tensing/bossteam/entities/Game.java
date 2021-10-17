@@ -11,15 +11,10 @@ import java.util.stream.IntStream;
 
 import static de.tensing.bossteam.settings.Settings.*;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
 public class Game {
-    private String id;
+    public static Integer PROGRESS = START_PROGRESS;
 
-    private Integer progress;
-
-    private Date startTime;
+    public static Date START_TIME;
 
     public static List<Player> PLAYERS_LIST = new ArrayList<>();
 
@@ -33,5 +28,4 @@ public class Game {
                                 START_FOOD,
                                 START_ARMOR)));
     }
-
 }

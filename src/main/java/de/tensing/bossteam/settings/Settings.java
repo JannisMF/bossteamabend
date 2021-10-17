@@ -12,4 +12,6 @@ public final class Settings {
     public static final int START_HEALTH = 10;
     public static final int START_FOOD = 10;
     public static final int START_ARMOR = 0;
+    public static final int START_PROGRESS = 0;
+    public static final int MAX_PROGRESS = 100;
 }

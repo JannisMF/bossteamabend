@@ -6,11 +6,20 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.util.UrlPathHelper;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 import static de.tensing.bossteam.security.ApplicationUserRole.*;
 
@@ -27,8 +36,9 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
+                .antMatchers("/", "index", "/css/*", "/js/*", "player/1").permitAll()
                 .antMatchers("/**").hasRole(ADMIN.name())
                 .antMatchers("/player/*").hasRole(BOSSTEAMER.name())
                 .antMatchers("/player/1").hasRole(P1.name())
@@ -64,7 +74,13 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .httpBasic();
+                .httpBasic()
+                .and()
+                .logout()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutSuccessUrl("/index.html")
+                    .deleteCookies("JSESSIONID")
+                    .invalidateHttpSession(true);
     }
 
     private UserDetails createNewUser(String username, String password, ApplicationUserRole role) {
@@ -113,7 +129,37 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
         return new InMemoryUserDetailsManager(
                 bossTeamUser,
-                jannismfUser
+                jannismfUser,
+                p1User,
+                p2User,
+                p3User,
+                p4User,
+                p5User,
+                p6User,
+                p7User,
+                p8User,
+                p9User,
+                p10User,
+                p11User,
+                p12User,
+                p13User,
+                p14User,
+                p15User,
+                p16User,
+                p17User,
+                p18User,
+                p19User,
+                p20User,
+                p21User,
+                p22User,
+                p23User,
+                p24User,
+                p25User,
+                p26User,
+                p27User,
+                p28User,
+                p29User,
+                p30User
         );
     }
 }
