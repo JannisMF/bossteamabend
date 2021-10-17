@@ -1,11 +1,11 @@
 function addProgress(progress, maxProgress) {
     setProgressbarHigher(progress, maxProgress)
-    httpRequestMaker(new XMLHttpRequest(), "/addProgress")
+    httpRequestMaker(new XMLHttpRequest(), "addProgress")
 }
 
 function removeProgress(progress, maxProgress) {
     setProgressbarLower(progress, maxProgress)
-    httpRequestMaker(new XMLHttpRequest(), "/removeProgress")
+    httpRequestMaker(new XMLHttpRequest(), "removeProgress")
 }
 
 let setProgressbarHigher = function (progress, maxProgress) {
@@ -29,7 +29,6 @@ let setProgressbarLower = function (progress, maxProgress) {
     let elem = document.getElementById("progressBar")
     elem.style.width = width + "%"
 }
-
 
 let httpRequestMaker = function (httpRequest, page) {
     httpRequest.open("GET", "https://bossteam.azurewebsites.net/game/progress/" + page);

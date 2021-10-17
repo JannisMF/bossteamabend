@@ -13,14 +13,14 @@ import static de.tensing.bossteam.entities.Settings.MAX_PROGRESS;
 @RequestMapping("game")
 public class GameController {
 
-    @GetMapping(path = "/settings")
+    @GetMapping(path = "settings")
     public ModelAndView settingsPage() {
         ModelAndView mav = new ModelAndView("settings");
         mav.addObject("playerList", PLAYERS_LIST);
         return mav;
     }
 
-    @GetMapping(path = "/progress")
+    @GetMapping(path = "progress")
     public ModelAndView progressPage() {
         ModelAndView mav = new ModelAndView("progress");
         mav.addObject("playerList", PLAYERS_LIST);
@@ -29,7 +29,7 @@ public class GameController {
         return mav;
     }
 
-    @GetMapping(path = "/progress/addProgress")
+    @GetMapping(path = "progress/addProgress")
     public String addProgress() {
         if (PROGRESS < MAX_PROGRESS) {
             PROGRESS++;
@@ -39,7 +39,7 @@ public class GameController {
         }
     }
 
-    @GetMapping(path = "/progress/removeProgress")
+    @GetMapping(path = "progress/removeProgress")
     public String removeProgress() {
         if (PROGRESS > 0) {
             PROGRESS--;
