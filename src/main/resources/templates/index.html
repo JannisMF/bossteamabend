@@ -20,7 +20,7 @@
             let maxProgress = /*[[${maxProgress}]]*/ "t";
             /*]]>*/
 
-            let progressBarWidth = parseInt(progress) / maxProgress
+            let progressBarWidth = parseInt(progress) / parseInt(maxProgress)
             let elem = document.getElementById("progressBar")
             elem.style.width = progressBarWidth + "%"
 
