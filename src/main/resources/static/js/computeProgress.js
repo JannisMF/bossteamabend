@@ -1,17 +1,20 @@
 function addProgress(progress, maxProgress) {
     setProgressbarHigher(progress, maxProgress)
+    window.console.log(progress)
     httpRequestMaker(new XMLHttpRequest(), "addProgress")
 }
 
 function removeProgress(progress, maxProgress) {
     setProgressbarLower(progress, maxProgress)
+    window.console.log(progress)
     httpRequestMaker(new XMLHttpRequest(), "removeProgress")
 }
 
 let setProgressbarHigher = function (progress, maxProgress) {
+    let newProgress = progress + 1
     let width = 0
     if (progress < maxProgress) {
-        width = (progress + 1) / maxProgress
+        width = newProgress / maxProgress
     } else {
         width = 100
     }
@@ -20,9 +23,10 @@ let setProgressbarHigher = function (progress, maxProgress) {
 }
 
 let setProgressbarLower = function (progress, maxProgress) {
+    let newProgress = progress - 1
     let width = 0
     if (progress > 0) {
-        width = (progress - 1) / maxProgress
+        width = newProgress / maxProgress
     } else {
         width = 0
     }
