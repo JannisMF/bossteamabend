@@ -16,7 +16,13 @@
         <script th:inline="javascript">
             /*<![CDATA[*/
             let playerList = /*[[${playerList}]]*/ "t";
+            let progress = /*[[${progress}]]*/ "t";
+            let maxProgress = /*[[${maxProgress}]]*/ "t";
             /*]]>*/
+
+            let progressBarWidth = progress / maxProgress
+            let elem = document.getElementById("progressBar")
+            elem.style.width = progressBarWidth + "%"
 
             let size = "18px";
             let imgHealthFilled = document.createElement("img");
