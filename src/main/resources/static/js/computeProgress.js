@@ -30,6 +30,7 @@ let setProgressbarLower = function (progress, maxProgress) {
     elem.style.width = width + "%"
 }
 
+
 let httpRequestMaker = function (httpRequest, page) {
     httpRequest.open("GET", "https://bossteam.azurewebsites.net/game/progress/" + page);
     httpRequest.send();
