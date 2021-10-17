@@ -20,9 +20,9 @@
             let maxProgress = /*[[${maxProgress}]]*/ "t";
             /*]]>*/
 
-            let progressBarWidth = parseInt(progress) / parseInt(maxProgress)
+            let progressBarWidth = (parseInt(progress) / parseInt(maxProgress)) * 100
             let elem = document.getElementById("progressBar")
-            elem.style.width = progressBarWidth.toString()
+            elem.style.width = progressBarWidth + "%"
 
             let size = "18px";
             let imgHealthFilled = document.createElement("img");
