@@ -1,13 +1,13 @@
 package de.tensing.bossteam.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import static de.tensing.bossteam.entities.Game.PLAYERS_LIST;
 
-@Controller
+@RestController
 @RequestMapping("/")
 public class IndexController {
 
