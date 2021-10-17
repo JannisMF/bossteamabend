@@ -3,8 +3,7 @@
 <head>
     <meta charset="utf-8" name="viewport"
           content="width=device-width, initial-scale=0.6, maximum-scale=0.6, user-scalable=0">
-    <meta http-equiv="refresh" content="5">
-    <title>Übersicht</title>
+    <title>Progress</title>
     <script type="text/javascript" src="/js/computeProgress.js"></script>
 </head>
 <body style="background-color: lightgray">
@@ -12,6 +11,23 @@
     <div id="progressBarMask" style="width: 100%;background-color:gray;">
         <div id="progressBar" style="width: 0%;height:40px;background-color: green"></div>
     </div>
+    <br><br>
+    <div>
+        <input
+                type="image"
+                style="height:100px;width:450px"
+                th:attr="onclick=|addProgress('${progress}','${maxProgress}')|"
+                src="../img/AddProgress.png">
+        </input>
+        <br><br>
+        <input
+                type="image"
+                style="height:100px;width:450px"
+                th:attr="onclick=|removeProgress('${progress}')|"
+                src="../img/RemoveProgress.png">
+        </input>
+    </div>
+    <br><br>
     <div id="playersDiv">
         <script th:inline="javascript">
             /*<![CDATA[*/
@@ -49,37 +65,40 @@
             let playersDiv = "";
             for (let i = 0; i < playerList.length; i++) {
                 let playerId = i + 1;
+                let player = playerList[i];
                 let playerDiv = "";
                 let playerNameDiv = ""
-                if (playerId < 10) {
-                    playerNameDiv =
-                        "<div style=\"display:inline;\"> " +
-                        "<p style=\"font-size:20pt;display:inline;padding-right:25px;font-family: monospace;\">Spieler " + playerId + "</p>" +
-                        "</div>";
-                } else {
-                    playerNameDiv =
-                        "<div style=\"display:inline;\"> " +
-                        "<p style=\"font-size:20pt;display:inline;padding-right:10px;font-family: monospace;\">Spieler " + playerId + "</p>" +
-                        "</div>";
+                if (playerList[health] == 0) {
+                    if (playerId < 10) {
+                        playerNameDiv =
+                            "<div style=\"display:inline;\"> " +
+                            "<p style=\"font-size:20pt;display:inline;padding-right:25px;font-family: monospace;\">Spieler " + playerId + "</p>" +
+                            "</div>";
+                    } else {
+                        playerNameDiv =
+                            "<div style=\"display:inline;\"> " +
+                            "<p style=\"font-size:20pt;display:inline;padding-right:10px;font-family: monospace;\">Spieler " + playerId + "</p>" +
+                            "</div>";
+                    }
+                    let playerAttributesDiv = "<div style=display:inline;><div style='padding-right: 10px;display:inline;'>";
+                    for (let j = 1; j < 11; j++) {
+                        playerAttributesDiv +=
+                            "<div id=\"p" + playerId + "h" + j + "\" style=\"display:inline;\"></div>";
+                    }
+                    playerAttributesDiv += "</div><div style='padding-right: 10px;display:inline;'>";
+                    for (let j = 1; j < 11; j++) {
+                        playerAttributesDiv +=
+                            "<div id=\"p" + playerId + "f" + j + "\" style=\"display:inline;\"></div>";
+                    }
+                    playerAttributesDiv += "</div><div style='padding-right: 10px;display:inline;'>";
+                    for (let j = 1; j < 11; j++) {
+                        playerAttributesDiv +=
+                            "<div id=\"p" + playerId + "a" + j + "\" style=\"display:inline;\"></div>";
+                    }
+                    playerAttributesDiv += "</div></div>";
+                    playerDiv = "<div>" + playerNameDiv + playerAttributesDiv + "</div>";
+                    playersDiv += playerDiv;
                 }
-                let playerAttributesDiv = "<div style=display:inline;><div style='padding-right: 10px;display:inline;'>";
-                for (let j = 1; j < 11; j++) {
-                    playerAttributesDiv +=
-                        "<div id=\"p" + playerId + "h" + j + "\" style=\"display:inline;\"></div>";
-                }
-                playerAttributesDiv += "</div><div style='padding-right: 10px;display:inline;'>";
-                for (let j = 1; j < 11; j++) {
-                    playerAttributesDiv +=
-                        "<div id=\"p" + playerId + "f" + j + "\" style=\"display:inline;\"></div>";
-                }
-                playerAttributesDiv += "</div><div style='padding-right: 10px;display:inline;'>";
-                for (let j = 1; j < 11; j++) {
-                    playerAttributesDiv +=
-                        "<div id=\"p" + playerId + "a" + j + "\" style=\"display:inline;\"></div>";
-                }
-                playerAttributesDiv += "</div></div>";
-                playerDiv = "<div>" + playerNameDiv + playerAttributesDiv + "</div>";
-                playersDiv += playerDiv;
             }
             document.getElementById("playersDiv").innerHTML = playersDiv;
 

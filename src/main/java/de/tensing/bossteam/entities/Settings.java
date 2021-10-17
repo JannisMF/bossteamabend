@@ -1,4 +1,4 @@
-package de.tensing.bossteam.settings;
+package de.tensing.bossteam.entities;
 
 import de.tensing.bossteam.entities.Player;
 

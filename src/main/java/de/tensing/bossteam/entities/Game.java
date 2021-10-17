@@ -1,12 +1,11 @@
 package de.tensing.bossteam.entities;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static de.tensing.bossteam.settings.Settings.*;
+import static de.tensing.bossteam.entities.Settings.*;
 
 public class Game {
     public static List<Player> PLAYERS_LIST = new ArrayList<>();
