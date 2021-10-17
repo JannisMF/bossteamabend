@@ -19,7 +19,7 @@ function addArmor(playerId) {
 }
 
 let httpRequestMaker = function (httpRequest, playerId, page) {
-    httpRequest.open("GET", "http://localhost:8080/player/" + playerId + page);
+    httpRequest.open("GET", "https://bossteam.azurewebsites.net/player/" + playerId + page);
     httpRequest.send();
     httpRequest.onload = function () {
         window.location.reload()
