@@ -38,9 +38,8 @@
             /*]]>*/
 
             let progressBarWidth = parseInt(progress) / parseInt(maxProgress)
-            window.console.log(progressBarWidth)
             let elem = document.getElementById("progressBar")
-            elem.style.width = progressBarWidth + "%"
+            elem.style.width = progressBarWidth.toString()
 
             let size = "20px";
             let imgHealthFilled = document.createElement("img");
