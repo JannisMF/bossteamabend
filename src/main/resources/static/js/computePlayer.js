@@ -19,7 +19,7 @@ function addArmor(playerId) {
 }
 
 function respawnPlayer(playerId) {
-    httpRequestMaker(new XMLHttpRequest(), playerId, "/respawnArmor")
+    httpRequestMaker(new XMLHttpRequest(), playerId, "/respawnPlayer")
 }
 
 let httpRequestMaker = function (httpRequest, playerId, page) {
