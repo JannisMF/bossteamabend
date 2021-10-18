@@ -18,6 +18,10 @@ function addArmor(playerId) {
     httpRequestMaker(new XMLHttpRequest(), playerId, "/addArmor")
 }
 
+function respawnPlayer(playerId) {
+    httpRequestMaker(new XMLHttpRequest(), playerId, "/respawnArmor")
+}
+
 let httpRequestMaker = function (httpRequest, playerId, page) {
     httpRequest.open("GET", "https://bossteam.azurewebsites.net/player/" + playerId + page);
     httpRequest.send();
@@ -25,7 +29,9 @@ let httpRequestMaker = function (httpRequest, playerId, page) {
         window.location.reload()
         if (httpRequest.responseText.startsWith("<!DOCTYPE html>")) {
             alert("Du hast keine Berechtigung dafür!")
-        } else if (httpRequest.responseText.startsWith("TOT!")) {
+        } else if (httpRequest.responseText.startsWith("TOT!")
+            || httpRequest.responseText.startsWith("Oops!")
+            || httpRequest.responseType.startsWith("Respawned!")) {
             alert(httpRequest.responseText)
         }
     }

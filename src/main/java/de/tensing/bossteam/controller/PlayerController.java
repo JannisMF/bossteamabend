@@ -2,6 +2,7 @@ package de.tensing.bossteam.controller;
 
 import com.vaadin.flow.component.html.Div;
 import de.tensing.bossteam.entities.Player;
+import de.tensing.bossteam.entities.Settings;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import static de.tensing.bossteam.entities.Game.PLAYERS_LIST;
+import static de.tensing.bossteam.entities.Settings.*;
 
 @RestController
 @RequestMapping("player")
@@ -56,6 +58,9 @@ public class PlayerController extends Div {
     @GetMapping(path = "{playerId}/fillFood")
     public String fillFood(@PathVariable("playerId") Integer playerId) {
         Player p = PLAYERS_LIST.get(playerId - 1);
+        if (!(p.getHealth() > 0)) {
+            return "Oops! Spieler " + playerId + " ist tot und kann kein Essen erhalten.";
+        }
         if (p.getFood() < 10) {
             p.setFood(10);
             return "Das Essen von Spieler " + playerId + " wurde auf wieder aufgefüllt.";
@@ -77,16 +82,32 @@ public class PlayerController extends Div {
                 return "TOT! Der Spieler " + playerId + " ist gestorben.";
             }
         }
-        return "Der Spieler " + playerId + " hat kein Essen mehr. Das Leben wurde auf " + p.getHealth() + " gesetzt.";
+        return "Spieler " + playerId + " hat kein Essen mehr. Das Leben wurde auf " + p.getHealth() + " gesetzt.";
     }
 
     @GetMapping(path = "{playerId}/addArmor")
     public String addArmor(@PathVariable("playerId") Integer playerId) {
         Player p = PLAYERS_LIST.get(playerId - 1);
-        if (p.getArmor() < 10) {
+        if (!(p.getHealth() > 0)) {
+            return "Oops! Spieler " + playerId + " ist tot und kann keine Rüstung erhalten.";
+        }
+        else if (p.getArmor() < 10) {
             p.setArmor(p.getArmor() + 1);
             return "Die Rüstung von Spieler " + playerId + " wurde auf " + p.getArmor() + " gesetzt.";
         }
         return "Die Rüstung von Spieler " + playerId + " kann nicht höher als 10 werden.";
+    }
+
+    @GetMapping(path = "{playerId}/respawnPlayer")
+    public String respawnPlayer(@PathVariable("playerId") Integer playerId) {
+        Player p = PLAYERS_LIST.get(playerId - 1);
+        if (p.getHealth() > 0) {
+            return "Oops! Spieler " + playerId + " ist am Leben. Lebendige können nicht Wiederbelebt werden.";
+        } else {
+            p.setHealth(RESPAWN_HEALTH);
+            p.setFood(RESPAWN_FOOD);
+            p.setArmor(RESPAWN_ARMOR);
+            return "Respawned! Spieler " + playerId + " ist nun wieder lebendig.";
+        }
     }
 }
