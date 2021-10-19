@@ -6,6 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static de.tensing.bossteam.entities.Game.*;
 import static de.tensing.bossteam.entities.Settings.*;
@@ -24,8 +25,8 @@ public class GameController {
     }
 
     @PostMapping(path = "settings/startGame")
-    public String startGame(@RequestParam() Integer numberOfPlayers) {
-        NUMBER_OF_PLAYERS = numberOfPlayers;
+    public String startGame(@RequestBody Map<String, Integer> json) {
+        NUMBER_OF_PLAYERS = json.get("numberOfPlayers");
         GAME_STARTED = true;
         return "Spiel gestartet";
     }
