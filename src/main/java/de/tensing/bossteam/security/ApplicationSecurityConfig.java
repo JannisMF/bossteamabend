@@ -28,7 +28,6 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/index**", "/error**", "/css/*", "/js/*", "/img/*").permitAll()
                 .antMatchers("/player/1").hasAnyRole(P1.name(), BOSSTEAMER.name(), ADMIN.name())
@@ -69,13 +68,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().accessDeniedPage("/error403.html")
                 .and()
-                .httpBasic()
-                .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/index.html")
-                .deleteCookies("JSESSIONID")
-                .invalidateHttpSession(true);
+                .httpBasic();
     }
 
     private UserDetails createNewUser(String username, String password, ApplicationUserRole role) {

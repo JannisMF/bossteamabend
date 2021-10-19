@@ -24,9 +24,10 @@ public class GameController {
     }
 
     @PostMapping(path = "settings/startGame")
-    public void startGame(@RequestParam(name = "numberofplayers") Integer numberOfPlayers) {
+    public String startGame(@RequestParam() Integer numberOfPlayers) {
         NUMBER_OF_PLAYERS = numberOfPlayers;
         GAME_STARTED = true;
+        return "Spiel gestartet";
     }
 
     @GetMapping(path = "progress")
