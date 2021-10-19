@@ -18,7 +18,6 @@ public class Game {
     public static String DAYTIME = "TAGESZEIT";
     public static String TIME = "404 Not Found";
 
-
     static {
         IntStream
                 .rangeClosed(1, NUMBER_OF_PLAYERS)
