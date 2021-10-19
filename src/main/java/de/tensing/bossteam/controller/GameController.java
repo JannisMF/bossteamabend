@@ -1,13 +1,14 @@
 package de.tensing.bossteam.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import de.tensing.bossteam.entities.Settings;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import static de.tensing.bossteam.entities.Game.PLAYERS_LIST;
-import static de.tensing.bossteam.entities.Game.PROGRESS;
-import static de.tensing.bossteam.entities.Settings.MAX_PROGRESS;
+import java.util.ArrayList;
+import java.util.List;
+
+import static de.tensing.bossteam.entities.Game.*;
+import static de.tensing.bossteam.entities.Settings.*;
 
 @RestController
 @RequestMapping("game")
@@ -17,7 +18,15 @@ public class GameController {
     public ModelAndView settingsPage() {
         ModelAndView mav = new ModelAndView("settings");
         mav.addObject("playerList", PLAYERS_LIST);
+        mav.addObject("numberOfPlayer", NUMBER_OF_PLAYERS);
+        mav.addObject("maxProgress", MAX_PROGRESS);
         return mav;
+    }
+
+    @PostMapping(path = "settings/startGame")
+    public void startGame(@RequestParam(name = "numberofplayers") Integer numberOfPlayers) {
+        NUMBER_OF_PLAYERS = numberOfPlayers;
+        GAME_STARTED = true;
     }
 
     @GetMapping(path = "progress")

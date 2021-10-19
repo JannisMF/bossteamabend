@@ -1,6 +1,5 @@
 package de.tensing.bossteam.controller;
 
-import com.vaadin.flow.component.html.Div;
 import de.tensing.bossteam.entities.Player;
 import de.tensing.bossteam.entities.Settings;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,7 @@ import static de.tensing.bossteam.entities.Settings.*;
 
 @RestController
 @RequestMapping("player")
-public class PlayerController extends Div {
+public class PlayerController {
 
     @GetMapping(path = "{playerId}")
     public ModelAndView playerPage(@PathVariable("playerId") Integer playerId) {

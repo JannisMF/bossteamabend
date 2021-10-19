@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings</title>
+    <script type="text/javascript" src="/js/computeSettings.js"></script>
+</head>
+<body style="background-color: lightgray">
+    <h1 style="font-family: monospace">Settings:</h1>
+
+    <form>
+        <label style="font-family: monospace;font-size:40px;">Spielerzahl: </label>
+        <input type="text" id="numberOfPlayers" th:value="${numberOfPlayers}"><br><br>
+        <input type="submit" onclick="startGame()" value="Spiel starten">
+    </form>
+</body>
+</html>

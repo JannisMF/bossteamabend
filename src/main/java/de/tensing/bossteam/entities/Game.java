@@ -12,7 +12,11 @@ public class Game {
 
     public static Integer PROGRESS = START_PROGRESS;
 
-    public static Date START_TIME;
+    public static Boolean GAME_STARTED = false;
+
+    public static Boolean IS_DAY = true;
+    public static String DAYTIME = "TAGESZEIT";
+    public static String TIME = "404 Not Found";
 
     static {
         IntStream
