@@ -23,7 +23,7 @@ public class GameController {
         return mav;
     }
 
-    @PostMapping(path = "settings/startGame")
+    @PostMapping(path = "settings/startGame", produces = "application/json")
     public String startGame(@RequestParam() Integer numberOfPlayers) {
         NUMBER_OF_PLAYERS = numberOfPlayers;
         GAME_STARTED = true;
