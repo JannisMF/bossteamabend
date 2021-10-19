@@ -3,7 +3,7 @@ function startGame() {
 }
 
 let httpRequestMaker = function (httpRequest, page) {
-    httpRequest.open("POST", "https://bossteam.azurewebsites.net/game/" + page)
+    httpRequest.open("POST", "https://bossteam.azurewebsites.net/game/settings/" + page)
     let numberOfPlayers = document.getElementById("numberOfPlayers").value
     let request = new Object()
     request.numberOfPlayers = numberOfPlayers
