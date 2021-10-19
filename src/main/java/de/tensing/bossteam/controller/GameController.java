@@ -24,7 +24,9 @@ public class GameController {
         return mav;
     }
 
-    @PostMapping(path = "settings/startGame")
+    @PostMapping(value = "settings/startGame",
+            consumes = "application/json",
+            produces = "application/json")
     public String startGame(@RequestBody Map<String, Integer> json) {
         NUMBER_OF_PLAYERS = json.get("numberOfPlayers");
         GAME_STARTED = true;
