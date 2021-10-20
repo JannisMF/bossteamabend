@@ -16,6 +16,7 @@ public class Game {
 
     public static Boolean IS_DAY = true;
     public static String DAYTIME = "TAGESZEIT";
+    public static Integer TIME_SEC = 600;
     public static String TIME = "404 Not Found";
 
     static {

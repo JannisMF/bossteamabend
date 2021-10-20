@@ -29,10 +29,10 @@ public class IndexController {
     private void computeDayNight() {
         if (IS_DAY) {
             DAYTIME = "TAG";
-            TIME = secToMinAndSecString(DAY_LENGTH);
+            TIME = secToMinAndSecString(TIME_SEC);
         } else {
             DAYTIME = "NACHT";
-            TIME = secToMinAndSecString(NIGHT_LENGTH);
+            TIME = secToMinAndSecString(TIME_SEC);
         }
     }
 }
