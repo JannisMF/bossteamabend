@@ -33,6 +33,12 @@ public class GameController {
     public String startGame(@RequestBody NumberOfPlayersDTO numberOfPlayersDTO) {
         NUMBER_OF_PLAYERS = Integer.parseInt(numberOfPlayersDTO.getNumberOfPlayers());
         GAME_STARTED = true;
+
+        // Remove Players from PLAYERS_LIST
+        for (int i = NUMBER_OF_PLAYERS - 1; i < PLAYERS_LIST.toArray().length; i++) {
+            PLAYERS_LIST.remove(i);
+        }
+
         return "Spiel gestartet";
     }
 
