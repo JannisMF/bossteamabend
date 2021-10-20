@@ -1,6 +1,8 @@
 package de.tensing.bossteam.controller;
 
+import de.tensing.bossteam.entities.NumberOfPlayersDTO;
 import de.tensing.bossteam.entities.Settings;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -11,6 +13,7 @@ import java.util.Map;
 import static de.tensing.bossteam.entities.Game.*;
 import static de.tensing.bossteam.entities.Settings.*;
 
+@Slf4j
 @RestController
 @RequestMapping("game")
 public class GameController {
@@ -24,9 +27,11 @@ public class GameController {
         return mav;
     }
 
-    @PostMapping(value = "settings/startGame")
-    public String startGame(@RequestBody Integer numberOfPlayers) {
-        NUMBER_OF_PLAYERS = numberOfPlayers;
+    @PostMapping(value = "settings/startGame",
+            produces = "application/json",
+            consumes = "application/json")
+    public String startGame(@RequestBody NumberOfPlayersDTO numberOfPlayersDTO) {
+        NUMBER_OF_PLAYERS = Integer.parseInt(numberOfPlayersDTO.getNumberOfPlayers());
         GAME_STARTED = true;
         return "Spiel gestartet";
     }
