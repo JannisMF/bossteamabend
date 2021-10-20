@@ -34,6 +34,7 @@ public class GameController {
         NUMBER_OF_PLAYERS = Integer.parseInt(numberOfPlayersDTO.getNumberOfPlayers());
         GAME_STARTED = true;
         return "Spiel gestartet";
+
     }
 
     @GetMapping(path = "progress")
