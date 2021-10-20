@@ -72,6 +72,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .httpBasic();
 
+
     }
 
     private UserDetails createNewUser(String username, String password, ApplicationUserRole role) {
