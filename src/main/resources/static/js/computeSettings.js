@@ -1,6 +1,6 @@
 function startGame() {
     let numberOfPlayers = document.getElementById("numberOfPlayers").value
-    let json = JSON.stringify({"numberOfPlayers": numberOfPlayers})
+    let json = JSON.stringify({numberOfPlayers: numberOfPlayers})
     httpRequestMaker(new XMLHttpRequest(), json, "startGame")
 }
 
