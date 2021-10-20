@@ -61,7 +61,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/player/29").hasAnyRole(P29.name(), BOSSTEAMER.name(), ADMIN.name())
                 .antMatchers("/player/30").hasAnyRole(P30.name(), BOSSTEAMER.name(), ADMIN.name())
                 .antMatchers("/player/**").hasAnyRole(BOSSTEAMER.name(), ADMIN.name())
-                .antMatchers("/game/progress/**").hasAnyRole(BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/game/progress/*").hasAnyRole(BOSSTEAMER.name(), ADMIN.name())
                 .antMatchers("/**").hasRole(ADMIN.name())
                 .anyRequest()
                 .authenticated()
