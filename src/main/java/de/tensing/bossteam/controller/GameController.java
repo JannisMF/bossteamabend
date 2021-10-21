@@ -30,10 +30,7 @@ public class GameController {
         GAME_STARTED = true;
 
         // Remove Players from PLAYERS_LIST
-        log.info("NumberOfPlayers: {}", NUMBER_OF_PLAYERS);
-        int size = PLAYERS_LIST.size();
-        for (int i = size; i > NUMBER_OF_PLAYERS; i--) {
-            log.info("i: {}", i);
+        for (int i = PLAYERS_LIST.size(); i > NUMBER_OF_PLAYERS; i--) {
             PLAYERS_LIST.remove(i - 1);
         }
 
