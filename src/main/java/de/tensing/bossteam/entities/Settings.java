@@ -15,6 +15,8 @@ public final class Settings {
     public static final Integer START_PROGRESS = 0;
     public static final Integer MAX_PROGRESS = 150;
 
+    public static final Integer MAX_NUMBER_OF_NEWS = 8;
+
     // IN SECONDS
     public static final int DAY_LENGTH = 600; // 10 Minutes
     public static final int NIGHT_LENGTH = 450; // 7,5 Minutes

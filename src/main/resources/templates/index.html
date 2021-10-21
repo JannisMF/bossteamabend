@@ -129,10 +129,48 @@
                 }
             </script>
         </div>
-        <div style="float:right;width:40%;"id="settingsDiv">
-            <div style="margin-top:50px">
-                <p style="font-size:50px;font-family:monospace;text-align:center;margin:0px" th:text="${daytime}">Tageszeit</p>
-                <p style="font-size:30px;font-family:monospace;text-align:center;margin-top:10px;" th:text="'Noch ' + ${time}"></p>
+        <div style="float:right;width:40%;" id="settingsDiv">
+            <div style="margin-top:40px;height:30%; float: top">
+                <div style="margin: 10px">
+                    <p style="font-size:40px;font-family:monospace;text-align:left;margin:0px;display: inline;"
+                       th:text="${daytime} + '  '">Tageszeit</p>
+                    <p style="font-size:30px;font-family:monospace;text-align:left;display: inline"
+                       th:text="'-  noch ' + ${time}"></p>
+                </div>
+            </div>
+            <br><br>
+            <div style="float:bottom;height: 70%;background-color: darkgray">
+                <div style="background-color: lightgray;margin-left: 5px;">
+                    <div style="background-color: lightgray;margin-left: 5px;">
+                        <p style="font-size:40px;font-family:monospace;text-align:left;margin:0px"> News</p>
+                        <div><p id="news0" style="font-family: monospace;font-size: 18px"></p></div>
+                        <div><p id="news1" style="font-family: monospace;font-size: 18px"></p></div>
+                        <div><p id="news2" style="font-family: monospace;font-size: 18px"></p></div>
+                        <div><p id="news3" style="font-family: monospace;font-size: 18px"></p></div>
+                        <div><p id="news4" style="font-family: monospace;font-size: 18px"></p></div>
+                        <div><p id="news5" style="font-family: monospace;font-size: 18px"></p></div>
+                        <div><p id="news6" style="font-family: monospace;font-size: 18px"></p></div>
+                        <div><p id="news7" style="font-family: monospace;font-size: 18px"></p></div>
+                        <div><p id="news8" style="font-family: monospace;font-size: 18px"></p></div>
+                        <div><p id="news9" style="font-family: monospace;font-size: 18px"></p></div>
+
+                        <script th:inline="javascript">
+                            /*<![CDATA[*/
+                            let news = /*[[${news}]]*/ "t";
+                            /*]]>*/
+
+                            for (let i = news.length - 1; i >= 0; i--) {
+                                let oneNews = news[i]
+                                let time = oneNews["time"]
+                                let message = oneNews["message"]
+                                let id = news.length - i
+                                let elemId = "news" + id
+                                let elem = document.getElementById(elemId)
+                                elem.innerText = " " + time + ":     " + message
+                            }
+                        </script>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
