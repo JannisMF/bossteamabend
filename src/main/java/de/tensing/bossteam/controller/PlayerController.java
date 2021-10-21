@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -117,10 +118,13 @@ public class PlayerController {
 
     @GetMapping(path = "{playerId}/qrCode", produces = MediaType.IMAGE_JPEG_VALUE)
     public byte[] generateQrCode(@PathVariable("playerId") Integer playerId) throws IOException {
-        Player p = PLAYERS_LIST.get(playerId - 1);
-        String url = "http://localhost:8080/player/" + p.getPlayerId();
+        if (playerId <= 0 || playerId > PLAYERS_LIST.size()) {
+            throw new IllegalArgumentException("Invalid player id");
+        }
 
-        BufferedImage image = QrCodeGenerator.generateQrCodeFrom(url, 200, 200);
+        String url = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/..").build().normalize().toString();
+        BufferedImage image = QrCodeGenerator.generateQrCodeFrom(url, 400, 400);
+
         ByteArrayOutputStream bao = new ByteArrayOutputStream();
         ImageIO.write(image, "jpg", bao);
         return bao.toByteArray();
