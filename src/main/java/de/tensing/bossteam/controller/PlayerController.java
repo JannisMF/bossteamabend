@@ -116,7 +116,7 @@ public class PlayerController {
     }
 
     @GetMapping(path = "{playerId}/qrCode", produces = MediaType.IMAGE_JPEG_VALUE)
-    public byte[] generateQrCode(@PathVariable("playerId") Integer playerId, @) throws IOException {
+    public byte[] generateQrCode(@PathVariable("playerId") Integer playerId) throws IOException {
         Player p = PLAYERS_LIST.get(playerId - 1);
         String url = "http://localhost:8080/player/" + p.getPlayerId();
 
