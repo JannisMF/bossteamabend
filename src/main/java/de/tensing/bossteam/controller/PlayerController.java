@@ -1,12 +1,18 @@
 package de.tensing.bossteam.controller;
 
 import de.tensing.bossteam.entities.Player;
-import de.tensing.bossteam.entities.Settings;
+import de.tensing.bossteam.utils.QrCodeGenerator;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 import static de.tensing.bossteam.entities.Game.PLAYERS_LIST;
 import static de.tensing.bossteam.entities.Settings.*;
@@ -89,8 +95,7 @@ public class PlayerController {
         Player p = PLAYERS_LIST.get(playerId - 1);
         if (!(p.getHealth() > 0)) {
             return "Oops! Spieler " + playerId + " ist tot und kann keine Rüstung erhalten.";
-        }
-        else if (p.getArmor() < 10) {
+        } else if (p.getArmor() < 10) {
             p.setArmor(p.getArmor() + 1);
             return "Die Rüstung von Spieler " + playerId + " wurde auf " + p.getArmor() + " gesetzt.";
         }
@@ -109,4 +114,16 @@ public class PlayerController {
             return "Respawned! Spieler " + playerId + " ist nun wieder lebendig.";
         }
     }
+
+    @GetMapping(path = "{playerId}/qrCode", produces = MediaType.IMAGE_JPEG_VALUE)
+    public byte[] generateQrCode(@PathVariable("playerId") Integer playerId, @) throws IOException {
+        Player p = PLAYERS_LIST.get(playerId - 1);
+        String url = "http://localhost:8080/player/" + p.getPlayerId();
+
+        BufferedImage image = QrCodeGenerator.generateQrCodeFrom(url, 200, 200);
+        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+        ImageIO.write(image, "jpg", bao);
+        return bao.toByteArray();
+    }
+
 }
