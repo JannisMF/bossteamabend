@@ -1,6 +1,9 @@
 package de.tensing.bossteam.controller;
 
+import de.tensing.bossteam.entities.dtos.NewsDTO;
 import de.tensing.bossteam.entities.dtos.NumberOfPlayersDTO;
+import de.tensing.bossteam.news.News;
+import de.tensing.bossteam.utils.TimeConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -63,5 +66,15 @@ public class GameController {
             return "Der Fortschritt beträgt nun " + PROGRESS + ".";
         }
         return "Der Fortschritt kann nicht weniger als 0 sein.";
+    }
+
+    @PostMapping(value = "progress/sendNews",
+            produces = "application/json",
+            consumes = "application/json")
+    public String startGame(@RequestBody NewsDTO newsDTO) {
+        News news = new News(TimeConverter.getCurrentTime(), newsDTO.getMessage());
+        NEWS.add(news);
+
+        return "News erschienen!";
     }
 }

@@ -23,16 +23,16 @@ public class IndexController {
         mav.addObject("maxProgress", MAX_PROGRESS);
         mav.addObject("daytime", DAYTIME);
         mav.addObject("time", TIME);
+        mav.addObject("news", NEWS);
         return mav;
     }
 
     private void computeDayNight() {
         if (IS_DAY) {
             DAYTIME = "TAG";
-            TIME = secToMinAndSecString(TIME_SEC);
         } else {
             DAYTIME = "NACHT";
-            TIME = secToMinAndSecString(TIME_SEC);
         }
+        TIME = secToMinAndSecString(TIME_SEC);
     }
 }
