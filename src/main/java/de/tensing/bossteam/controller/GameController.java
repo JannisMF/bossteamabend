@@ -1,14 +1,9 @@
 package de.tensing.bossteam.controller;
 
-import de.tensing.bossteam.entities.NumberOfPlayersDTO;
-import de.tensing.bossteam.entities.Settings;
+import de.tensing.bossteam.entities.dtos.NumberOfPlayersDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import static de.tensing.bossteam.entities.Game.*;
 import static de.tensing.bossteam.entities.Settings.*;
@@ -35,8 +30,8 @@ public class GameController {
         GAME_STARTED = true;
 
         // Remove Players from PLAYERS_LIST
-        for (int i = NUMBER_OF_PLAYERS - 1; i < PLAYERS_LIST.toArray().length; i++) {
-            PLAYERS_LIST.remove(i);
+        for (int i = PLAYERS_LIST.size(); i > NUMBER_OF_PLAYERS; i--) {
+            PLAYERS_LIST.remove(i - 1);
         }
 
         return "Spiel gestartet";

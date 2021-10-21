@@ -20,7 +20,6 @@ public class ScheduledActivities {
     @Scheduled(fixedDelay = 1000)
     public void executeScheduler() {
         if (GAME_STARTED == true) {
-            log.info("Ping!");
             // REMOVE FOOD
             if (!(secondsLeftFood > 0)) {
                 secondsLeftFood = FOOD_REMOVAL_INTERVAL;
