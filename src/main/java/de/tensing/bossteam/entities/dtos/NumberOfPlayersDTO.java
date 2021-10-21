@@ -1,4 +1,4 @@
-package de.tensing.bossteam.entities;
+package de.tensing.bossteam.entities.dtos;
 
 import lombok.*;
 

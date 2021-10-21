@@ -71,8 +71,6 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().accessDeniedPage("/error403.html")
                 .and()
                 .httpBasic();
-
-
     }
 
     private UserDetails createNewUser(String username, String password, ApplicationUserRole role) {
