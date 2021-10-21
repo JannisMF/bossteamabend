@@ -36,12 +36,5 @@ public class Game {
                                 START_HEALTH,
                                 START_FOOD,
                                 START_ARMOR)));
-        NEWS.add(new News(getCurrentTime(), "Hallo"));
-        NEWS.add(new News(getCurrentTime(), "Was geht"));
-        NEWS.add(new News(getCurrentTime(), "Test"));
-        NEWS.add(new News(getCurrentTime(), "Halloooo"));
-        NEWS.add(new News(getCurrentTime(), "Hallo5"));
-        NEWS.add(new News(getCurrentTime(), "Hallo6. DAS IST EINE SEEEHR LANGE NACHRICHT DIE LÄNGER IST ALS SIE VIELLEICHT SEIN SOLLE !!11elfe!!"));
-
     }
 }
