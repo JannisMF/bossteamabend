@@ -1,18 +1,13 @@
 package de.tensing.bossteam.entities;
 
-import de.tensing.bossteam.news.News;
+import de.tensing.bossteam.gameelements.news.News;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.IntStream;
 
-import de.tensing.bossteam.utils.TimeConverter;
 import org.apache.commons.collections4.queue.CircularFifoQueue;
 
 import static de.tensing.bossteam.entities.Settings.*;
-import static de.tensing.bossteam.utils.TimeConverter.getCurrentTime;
 
 public class Game {
     public static List<Player> PLAYERS_LIST = new ArrayList<>();

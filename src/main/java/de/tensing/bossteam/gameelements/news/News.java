@@ -1,9 +1,7 @@
-package de.tensing.bossteam.news;
+package de.tensing.bossteam.gameelements.news;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.time.LocalTime;
 
 @AllArgsConstructor
 @Data

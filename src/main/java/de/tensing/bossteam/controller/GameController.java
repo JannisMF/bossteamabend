@@ -2,7 +2,7 @@ package de.tensing.bossteam.controller;
 
 import de.tensing.bossteam.entities.dtos.NewsDTO;
 import de.tensing.bossteam.entities.dtos.NumberOfPlayersDTO;
-import de.tensing.bossteam.news.News;
+import de.tensing.bossteam.gameelements.news.News;
 import de.tensing.bossteam.utils.TimeConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

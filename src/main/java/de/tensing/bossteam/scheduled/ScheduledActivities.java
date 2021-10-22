@@ -31,14 +31,14 @@ public class ScheduledActivities {
             // COMPUTE DAY/NIGHT
             if (IS_DAY) {
                 if (!(TIME_SEC > 0)) {
-                    TIME_SEC = DAY_LENGTH;
+                    TIME_SEC = NIGHT_LENGTH;
                     IS_DAY = false;
                 } else {
                     TIME_SEC--;
                 }
             } else {
                 if (!(TIME_SEC > 0)) {
-                    TIME_SEC = NIGHT_LENGTH;
+                    TIME_SEC = DAY_LENGTH;
                     IS_DAY = true;
                 } else {
                     TIME_SEC--;
