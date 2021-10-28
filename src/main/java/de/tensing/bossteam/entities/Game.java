@@ -1,7 +1,5 @@
 package de.tensing.bossteam.entities;
 
-import de.tensing.bossteam.gameelements.news.News;
-
 import java.util.*;
 import java.util.stream.IntStream;
 

@@ -34,7 +34,8 @@ public enum ApplicationUserPermission {
     P27_PLAY("p27:play"),
     P28_PLAY("p28:play"),
     P29_PLAY("p29:play"),
-    P30_PLAY("p30:play");
+    P30_PLAY("p30:play"),
+    LUCKYWHEEL_SPIN("luckywheel:spin");
 
     private final String permission;
 

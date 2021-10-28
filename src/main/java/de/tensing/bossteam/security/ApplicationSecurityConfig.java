@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import static de.tensing.bossteam.security.ApplicationUserPermission.LUCKYWHEEL_SPIN;
 import static de.tensing.bossteam.security.ApplicationUserRole.*;
 
 @Configuration
@@ -32,6 +33,11 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/index**", "/error**", "/css/*", "/js/*", "/img/*").permitAll()
+                .antMatchers("/luckywheel/spin").hasAnyRole(P1.name(), P2.name(), P3.name(), P4.name(), P5.name(),
+                        P6.name(), P7.name(), P8.name(), P9.name(), P10.name(), P11.name(), P12.name(), P13.name(),
+                        P14.name(), P15.name(), P16.name(), P17.name(), P18.name(), P19.name(), P20.name(),
+                        P21.name(), P21.name(), P22.name(), P23.name(), P24.name(), P25.name(), P26.name(),
+                        P27.name(), P28.name(), P29.name(), P30.name())
                 .antMatchers("/player/1").hasAnyRole(P1.name(), BOSSTEAMER.name(), ADMIN.name())
                 .antMatchers("/player/2").hasAnyRole(P2.name(), BOSSTEAMER.name(), ADMIN.name())
                 .antMatchers("/player/3").hasAnyRole(P3.name(), BOSSTEAMER.name(), ADMIN.name())
@@ -86,36 +92,36 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     protected UserDetailsService userDetailsService() {
         UserDetails bossTeamUser = createNewUser("bossteam", "bittekeinbit3", BOSSTEAMER);
         UserDetails jannismfUser = createNewUser("jannismf", "s0nnenschule", ADMIN);
-        UserDetails p1User = createNewUser("p1", "rennen", P1);
-        UserDetails p2User = createNewUser("p2", "laib", P2);
-        UserDetails p3User = createNewUser("p3", "abendessen", P3);
-        UserDetails p4User = createNewUser("p4", "schuppen", P4);
-        UserDetails p5User = createNewUser("p5", "lippe", P5);
-        UserDetails p6User = createNewUser("p6", "eidechsen", P6);
-        UserDetails p7User = createNewUser("p7", "schiff", P7);
-        UserDetails p8User = createNewUser("p8", "alarm", P8);
-        UserDetails p9User = createNewUser("p9", "vorschlag", P9);
-        UserDetails p10User = createNewUser("p10", "ekel", P10);
-        UserDetails p11User = createNewUser("p11", "handel", P11);
-        UserDetails p12User = createNewUser("p12", "streichholz", P12);
-        UserDetails p13User = createNewUser("p13", "meisterschaft", P13);
-        UserDetails p14User = createNewUser("p14", "pferde", P14);
-        UserDetails p15User = createNewUser("p15", "stretch", P15);
-        UserDetails p16User = createNewUser("p16", "paket", P16);
-        UserDetails p17User = createNewUser("p17", "vers", P17);
-        UserDetails p18User = createNewUser("p18", "kohl", P18);
-        UserDetails p19User = createNewUser("p19", "steuer", P19);
-        UserDetails p20User = createNewUser("p20", "ehe", P20);
-        UserDetails p21User = createNewUser("p21", "termin", P21);
-        UserDetails p22User = createNewUser("p22", "menge", P22);
-        UserDetails p23User = createNewUser("p23", "eimer", P23);
-        UserDetails p24User = createNewUser("p24", "hammer", P24);
-        UserDetails p25User = createNewUser("p25", "knie", P25);
-        UserDetails p26User = createNewUser("p26", "wurzel", P26);
-        UserDetails p27User = createNewUser("p27", "bewegung", P27);
-        UserDetails p28User = createNewUser("p28", "sprache", P28);
-        UserDetails p29User = createNewUser("p29", "tante", P29);
-        UserDetails p30User = createNewUser("p30", "wissenschaft", P30);
+        UserDetails p1User = createNewUser("1", "rennen", P1);
+        UserDetails p2User = createNewUser("2", "laib", P2);
+        UserDetails p3User = createNewUser("3", "abendessen", P3);
+        UserDetails p4User = createNewUser("4", "schuppen", P4);
+        UserDetails p5User = createNewUser("5", "lippe", P5);
+        UserDetails p6User = createNewUser("6", "eidechsen", P6);
+        UserDetails p7User = createNewUser("7", "schiff", P7);
+        UserDetails p8User = createNewUser("8", "alarm", P8);
+        UserDetails p9User = createNewUser("9", "vorschlag", P9);
+        UserDetails p10User = createNewUser("10", "ekel", P10);
+        UserDetails p11User = createNewUser("11", "handel", P11);
+        UserDetails p12User = createNewUser("12", "streichholz", P12);
+        UserDetails p13User = createNewUser("13", "meisterschaft", P13);
+        UserDetails p14User = createNewUser("14", "pferde", P14);
+        UserDetails p15User = createNewUser("15", "stretch", P15);
+        UserDetails p16User = createNewUser("16", "paket", P16);
+        UserDetails p17User = createNewUser("17", "vers", P17);
+        UserDetails p18User = createNewUser("18", "kohl", P18);
+        UserDetails p19User = createNewUser("19", "steuer", P19);
+        UserDetails p20User = createNewUser("20", "ehe", P20);
+        UserDetails p21User = createNewUser("21", "termin", P21);
+        UserDetails p22User = createNewUser("22", "menge", P22);
+        UserDetails p23User = createNewUser("23", "eimer", P23);
+        UserDetails p24User = createNewUser("24", "hammer", P24);
+        UserDetails p25User = createNewUser("25", "knie", P25);
+        UserDetails p26User = createNewUser("26", "wurzel", P26);
+        UserDetails p27User = createNewUser("27", "bewegung", P27);
+        UserDetails p28User = createNewUser("28", "sprache", P28);
+        UserDetails p29User = createNewUser("29", "tante", P29);
+        UserDetails p30User = createNewUser("30", "wissenschaft", P30);
 
         return new InMemoryUserDetailsManager(
                 bossTeamUser,
