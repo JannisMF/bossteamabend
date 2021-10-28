@@ -1,4 +1,4 @@
-package de.tensing.bossteam.gameelements.news;
+package de.tensing.bossteam.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
