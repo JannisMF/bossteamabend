@@ -3,13 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Glücksrad</title>
+    <script type="text/javascript" src="/js/computeLuckyWheel.js"></script>
 </head>
 <body style="background-color: lightgray">
-    <h1 style="font-family: monospace">Glücksrad</h1>
-
-    <form>
-        <label style="font-family: monospace;font-size:40px;">Spielerzahl: </label>
-        <input type="submit" onclick="spinWheel()" value="Spiel starten">
-    </form>
+<input type="submit" th:attr="onclick=|spinWheel('${player}')|" value="Glücksrad drehen!">
 </body>
 </html>
