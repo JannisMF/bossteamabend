@@ -20,6 +20,8 @@ public class Game {
     public static Integer TIME_SEC = 600;
     public static String TIME = "404 Not Found";
 
+    public static Boolean WHEEL_SPINNING = false;
+
     static {
         IntStream
                 .rangeClosed(1, NUMBER_OF_PLAYERS)
