@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" name="viewport"
           content="width=device-width, initial-scale=0.6, maximum-scale=0.6, user-scalable=0">
+    <meta http-equiv="refresh" content="5">
     <title th:text="'Spieler ' + ${playerId}">Hier könnte Ihre Werbung stehen</title>
     <script type="text/javascript" src="/js/computePlayer.js"></script>
 </head>
@@ -102,42 +103,42 @@
 <input
         type="image"
         style="height:100px;width:450px"
-        th:attr="onclick=|addHealth('${playerId}')|"
+        th:attr="onclick=|addHealth('${serverUrl}', '${playerId}')|"
         src="/img/AddHealth.png">
 </input>
 <br><br>
 <input
         type="image"
         style="height:100px;width:450px"
-        th:attr="onclick=|removeHealth('${playerId}')|"
+        th:attr="onclick=|removeHealth('${serverUrl}', '${playerId}')|"
         src="/img/RemoveHealth.png">
 </input>
 <br><br>
 <input
         type="image"
         style="height:100px;width:450px"
-        th:attr="onclick=|fillFood('${playerId}')|"
+        th:attr="onclick=|fillFood('${serverUrl}', '${playerId}')|"
         src="/img/FillFood.png">
 </input>
 <br><br>
 <input
         type="image"
         style="height:100px;width:450px"
-        th:attr="onclick=|removeFood('${playerId}')|"
+        th:attr="onclick=|removeFood('${serverUrl}', '${playerId}')|"
         src="/img/RemoveFood.png">
 </input>
 <br><br>
 <input
         type="image"
         style="height:100px;width:450px"
-        th:attr="onclick=|addArmor('${playerId}')|"
+        th:attr="onclick=|addArmor('${serverUrl}', '${playerId}')|"
         src="/img/AddArmor.png">
 </input>
 <br><br>
 <input
         type="image"
         style="height:100px;width:450px"
-        th:attr="onclick=|respawnPlayer('${playerId}')|"
+        th:attr="onclick=|respawnPlayer('${serverUrl}', '${playerId}')|"
         src="/img/RespawnPlayer.png">
 </input>
 </body>

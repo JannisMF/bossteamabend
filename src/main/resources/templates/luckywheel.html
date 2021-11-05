@@ -2,13 +2,15 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="1">
     <title>Glücksrad</title>
     <style>
         #prices {
             font-family: monospace;
             font-size: 18px;
             border-collapse: collapse;
-            width: 50%;
+            width: 45%;
+            float: left;
         }
 
         #prices td, #prices th {
@@ -16,9 +18,13 @@
             padding: 8px;
         }
 
-        #prices tr:nth-child(even){background-color: #f2f2f2;}
+        #prices tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
 
-        #prices tr:hover {background-color: #ddd;}
+        #prices tr:hover {
+            background-color: #ddd;
+        }
 
         #prices th {
             padding-top: 12px;
@@ -58,10 +64,48 @@
         document.getElementById("prices").innerHTML = tableContents;
 
         function sortByKey(array, key) {
-            return array.sort(function(a, b) {
-                var x = a[key]; var y = b[key];
+            return array.sort(function (a, b) {
+                var x = a[key];
+                var y = b[key];
                 return ((x > y) ? -1 : ((x < y) ? 1 : 0));
             });
+        }
+    </script>
+    <div style="float:right;width: 50%;background-color: darkgray">
+        <div style="background-color: lightgray;margin-left: 5px;">
+            <div style="background-color: lightgray;margin-left: 5px;">
+                <p style="font-size:40px;font-family:monospace;text-align:left;margin:0px"> Prices</p>
+                <div><p id="price0" style="font-family: monospace;font-size: 18px"></p></div>
+                <div><p id="price1" style="font-family: monospace;font-size: 18px"></p></div>
+                <div><p id="price2" style="font-family: monospace;font-size: 18px"></p></div>
+                <div><p id="price3" style="font-family: monospace;font-size: 18px"></p></div>
+                <div><p id="price4" style="font-family: monospace;font-size: 18px"></p></div>
+                <div><p id="price5" style="font-family: monospace;font-size: 18px"></p></div>
+                <div><p id="price6" style="font-family: monospace;font-size: 18px"></p></div>
+                <div><p id="price7" style="font-family: monospace;font-size: 18px"></p></div>
+                <div><p id="price8" style="font-family: monospace;font-size: 18px"></p></div>
+                <div><p id="price9" style="font-family: monospace;font-size: 18px"></p></div>
+                <div><p id="price10" style="font-family: monospace;font-size: 18px"></p></div>
+                <div><p id="price11" style="font-family: monospace;font-size: 18px"></p></div>
+                <div><p id="price12" style="font-family: monospace;font-size: 18px"></p></div>
+                <div><p id="price13" style="font-family: monospace;font-size: 18px"></p></div>
+                <div><p id="price14" style="font-family: monospace;font-size: 18px"></p></div>
+            </div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        let wonPrices = /*[[${wonPrices}]]*/ "t";
+        /*]]>*/
+
+        for (let i = wonPrices.length - 1; i >= 0; i--) {
+            let onePrice = wonPrices[i]
+            let time = onePrice["time"]
+            let message = onePrice["message"]
+            let id = wonPrices.length - i
+            let elemId = "price" + id
+            let elem = document.getElementById(elemId)
+            elem.innerText = " " + time + ":     " + message
         }
     </script>
 </div>

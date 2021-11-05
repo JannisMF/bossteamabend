@@ -12,19 +12,20 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import static de.tensing.bossteam.entities.Game.PLAYERS_LIST;
-import static de.tensing.bossteam.entities.Settings.*;
+import static de.tensing.bossteam.utils.Request.getServerUrl;
 
 @RestController
 @RequestMapping("player")
 public class PlayerController {
 
     @GetMapping(path = "{playerId}")
-    public ModelAndView playerPage(@PathVariable("playerId") Integer playerId) {
+    public ModelAndView playerPage(@PathVariable("playerId") Integer playerId, HttpServletRequest request) {
         Player p = PLAYERS_LIST.stream()
                 .filter(player -> playerId.equals(player.getPlayerId()))
                 .findFirst()
@@ -35,6 +36,7 @@ public class PlayerController {
         mav.addObject("food", p.getFood());
         mav.addObject("armor", p.getArmor());
         mav.addObject("name", p.getName());
+        mav.addObject("serverUrl", getServerUrl(request));
         return mav;
     }
 

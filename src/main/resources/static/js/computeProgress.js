@@ -1,22 +1,21 @@
-function addProgress() {
-    httpRequestMakerGet(new XMLHttpRequest(), "addProgress")
+function addProgress(serverUrl) {
+    httpRequestMakerGet(new XMLHttpRequest(), serverUrl + "addProgress")
 }
 
-function removeProgress() {
-    httpRequestMakerGet(new XMLHttpRequest(), "removeProgress")
+function removeProgress(serverUrl) {
+    httpRequestMakerGet(new XMLHttpRequest(), serverUrl + "removeProgress")
 }
 
-function sendNews() {
+function sendNews(serverUrl) {
     let elem = document.getElementById("message")
     let message = elem.value
     let json = JSON.stringify({message: message})
     elem.value = ""
-    httpRequestMakerPost(new XMLHttpRequest(), json, "sendNews")
+    httpRequestMakerPost(new XMLHttpRequest(), serverUrl + "sendNews", json)
 }
 
 let httpRequestMakerGet = function (httpRequest, page) {
-    //httpRequest.open("GET", "https://bossteam.azurewebsites.net/game/progress/" + page);
-    httpRequest.open("GET", "http://localhost:8080/game/progress/" + page)
+    httpRequest.open("GET", page)
     httpRequest.send();
     httpRequest.onload = function () {
         window.location.reload()
@@ -28,10 +27,8 @@ let httpRequestMakerGet = function (httpRequest, page) {
     }
 }
 
-let httpRequestMakerPost = function (httpRequest, json, page) {
-    window.console.log(json)
-    //httpRequest.open("POST", "https://bossteam.azurewebsites.net/game/progress/" + page)
-    httpRequest.open("POST", "http://localhost:8080/game/progress/" + page)
+let httpRequestMakerPost = function (httpRequest, page, json) {
+    httpRequest.open("POST", page)
     httpRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
     httpRequest.send(json)
     httpRequest.onload = function () {

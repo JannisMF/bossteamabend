@@ -1,30 +1,29 @@
-function addHealth(playerId) {
-    httpRequestMaker(new XMLHttpRequest(), playerId, "/addHealth")
+function addHealth(serverUrl, playerId) {
+    httpRequestMaker(new XMLHttpRequest(), serverUrl + "player/" + playerId + "/addHealth")
 }
 
-function removeHealth(playerId) {
-    httpRequestMaker(new XMLHttpRequest(), playerId, "/removeHealth")
+function removeHealth(serverUrl, playerId) {
+    httpRequestMaker(new XMLHttpRequest(), serverUrl + "player/" + playerId + "/removeHealth")
 }
 
-function fillFood(playerId) {
-    httpRequestMaker(new XMLHttpRequest(), playerId, "/fillFood")
+function fillFood(serverUrl, playerId) {
+    httpRequestMaker(new XMLHttpRequest(), serverUrl + "player/" + playerId + "/fillFood")
 }
 
-function removeFood(playerId) {
-    httpRequestMaker(new XMLHttpRequest(), playerId, "/removeFood")
+function removeFood(serverUrl, playerId) {
+    httpRequestMaker(new XMLHttpRequest(), serverUrl + "player/" + playerId + "/removeFood")
 }
 
-function addArmor(playerId) {
-    httpRequestMaker(new XMLHttpRequest(), playerId, "/addArmor")
+function addArmor(serverUrl, playerId) {
+    httpRequestMaker(new XMLHttpRequest(), serverUrl + "player/" + playerId + "/addArmor")
 }
 
-function respawnPlayer(playerId) {
-    httpRequestMaker(new XMLHttpRequest(), playerId, "/respawnPlayer")
+function respawnPlayer(serverUrl, playerId) {
+    httpRequestMaker(new XMLHttpRequest(), serverUrl + "player/" + playerId + "/respawnPlayer")
 }
 
-let httpRequestMaker = function (httpRequest, playerId, page) {
-    //httpRequest.open("GET", "https://bossteam.azurewebsites.net/player/" + playerId + page);
-    httpRequest.open("GET", "http://localhost:8080/player/" + playerId + page)
+let httpRequestMaker = function (httpRequest, page) {
+    httpRequest.open("GET", page)
     httpRequest.send();
     httpRequest.onload = function () {
         window.location.reload()

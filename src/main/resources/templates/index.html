@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="utf-8" name="viewport"
-          content="width=device-width, initial-scale=0.6, maximum-scale=0.6, user-scalable=0">
-    <meta http-equiv="refresh" content="15">
+    <meta http-equiv="refresh" content="1">
     <title>Übersicht</title>
     <script type="text/javascript" src="/js/computeProgress.js"></script>
 </head>
@@ -61,10 +59,10 @@
                     let player = playerList[i];
                     let name = player["name"];
                     let playerNameDiv =
-                            "<div style=\"display:inline;float: left;width: 20%;\"> " +
-                            "<p style=\"font-size:18pt;display:inline;font-family: monospace;height: 18px\">" + name + "</p>" +
-                            "</div>";
-                    let playerAttributesDiv = "<div style='float:right;width: 80%;height: 28px;vertical-align: bottom;line-height: 28px'><div style='padding-right: 10px;display:inline;height: 28px;vertical-align: middle;overflow: hidden'>";
+                        "<div style=\"display:inline;float: left;width: 200px;\"> " +
+                        "<p style=\"font-size:18pt;display:inline;font-family: monospace;height: 18px\">" + name + "</p>" +
+                        "</div>";
+                    let playerAttributesDiv = "<div style='float:left;width: 600px;height: 28px;vertical-align: bottom;line-height: 28px'><div style='padding-right: 10px;display:inline;height: 28px;vertical-align: middle;overflow: hidden'>";
                     for (let j = 1; j < 11; j++) {
                         playerAttributesDiv +=
                             "<div id=\"p" + playerId + "h" + j + "\" style=\"display:inline;vertical-align: middle\"></div>";

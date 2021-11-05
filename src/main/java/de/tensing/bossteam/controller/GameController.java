@@ -1,16 +1,20 @@
 package de.tensing.bossteam.controller;
 
+import de.tensing.bossteam.entities.News;
 import de.tensing.bossteam.entities.dtos.NewsDTO;
 import de.tensing.bossteam.entities.dtos.NumberOfPlayersDTO;
-import de.tensing.bossteam.entities.News;
 import de.tensing.bossteam.utils.Actions;
 import de.tensing.bossteam.utils.TimeConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 import static de.tensing.bossteam.entities.Game.*;
-import static de.tensing.bossteam.entities.Settings.*;
+import static de.tensing.bossteam.entities.Settings.MAX_PROGRESS;
+import static de.tensing.bossteam.entities.Settings.NUMBER_OF_PLAYERS;
+import static de.tensing.bossteam.utils.Request.getServerUrl;
 
 @Slf4j
 @RestController
@@ -18,11 +22,12 @@ import static de.tensing.bossteam.entities.Settings.*;
 public class GameController {
 
     @GetMapping(path = "settings")
-    public ModelAndView settingsPage() {
+    public ModelAndView settingsPage(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("settings");
         mav.addObject("playerList", PLAYERS_LIST);
         mav.addObject("numberOfPlayer", NUMBER_OF_PLAYERS);
         mav.addObject("maxProgress", MAX_PROGRESS);
+        mav.addObject("serverUrl", getServerUrl(request));
         return mav;
     }
 
@@ -42,11 +47,12 @@ public class GameController {
     }
 
     @GetMapping(path = "progress")
-    public ModelAndView progressPage() {
+    public ModelAndView progressPage(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("progress");
         mav.addObject("playerList", PLAYERS_LIST);
         mav.addObject("progress", PROGRESS);
         mav.addObject("maxProgress", MAX_PROGRESS);
+        mav.addObject("serverUrl", getServerUrl(request));
         return mav;
     }
 

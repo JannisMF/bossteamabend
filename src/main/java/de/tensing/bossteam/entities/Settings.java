@@ -9,14 +9,14 @@ public final class Settings {
     public static final Integer START_ARMOR = 0;
 
     public static final Integer RESPAWN_HEALTH = 5;
-    public static final Integer RESPAWN_FOOD = 5;
+    public static final Integer RESPAWN_FOOD = 10;
     public static final Integer RESPAWN_ARMOR = 5;
 
     public static final Integer START_PROGRESS = 0;
     public static final Integer MAX_PROGRESS = 150;
 
     public static final Integer MAX_NUMBER_OF_NEWS = 8;
-    public static final Integer MAX_NUMBER_OF_PRICES = 3;
+    public static final Integer MAX_NUMBER_OF_PRICES = 10;
 
     // IN SECONDS
     public static final int DAY_LENGTH = 600; // 10 Minutes
