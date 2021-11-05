@@ -15,6 +15,7 @@ function sendNews(serverUrl) {
 }
 
 let httpRequestMakerGet = function (httpRequest, page) {
+    page = page.replace("undefined", "")
     httpRequest.open("GET", page)
     httpRequest.send();
     httpRequest.onload = function () {
@@ -28,6 +29,7 @@ let httpRequestMakerGet = function (httpRequest, page) {
 }
 
 let httpRequestMakerPost = function (httpRequest, page, json) {
+    page = page.replace("undefined", "")
     httpRequest.open("POST", page)
     httpRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
     httpRequest.send(json)

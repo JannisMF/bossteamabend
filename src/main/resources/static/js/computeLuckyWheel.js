@@ -3,6 +3,7 @@ function spinWheel(serverUrl) {
 }
 
 let httpRequestMaker = function (httpRequest, page) {
+    page = page.replace("undefined", "")
     httpRequest.open("GET", page)
     httpRequest.send()
     httpRequest.onload = function () {
