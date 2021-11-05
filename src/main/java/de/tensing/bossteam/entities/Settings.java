@@ -1,7 +1,5 @@
 package de.tensing.bossteam.entities;
 
-import java.awt.*;
-
 public final class Settings {
 
     public static Integer NUMBER_OF_PLAYERS = 30;
@@ -18,15 +16,10 @@ public final class Settings {
     public static final Integer MAX_PROGRESS = 150;
 
     public static final Integer MAX_NUMBER_OF_NEWS = 8;
+    public static final Integer MAX_NUMBER_OF_PRICES = 3;
 
     // IN SECONDS
     public static final int DAY_LENGTH = 600; // 10 Minutes
     public static final int NIGHT_LENGTH = 450; // 7,5 Minutes
     public static final int FOOD_REMOVAL_INTERVAL = 150; // 2,5 Minutes
-
-    // COLORS FOR LUCKYWHEEL
-    public static final String LW_COLOR_LOSE = "#e7706f";
-    public static final String LW_COLOR_WIN = "#89f26e";
-    public static final String LW_COLOR_BLANK = "#9e9680";
-
 }

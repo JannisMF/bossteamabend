@@ -7,7 +7,7 @@
     <script type="text/javascript" src="/js/computePlayer.js"></script>
 </head>
 <body style="background-color: lightgray">
-<div id="playerDiv">
+<div id="aplayerDiv">
     <script th:inline="javascript">
         /*<![CDATA[*/
         let playerId = /*[[${playerId}]]*/ "t";
@@ -52,26 +52,26 @@
         let playerAttributesDiv = "<div style=display:inline;><div style='padding-right: 10px;'>";
         for (let j = 1; j < 11; j++) {
             playerAttributesDiv +=
-                "<div id=\"p" + playerId + "h" + j + "\" style=\"display:inline;\"></div>";
+                "<div id=\"p" + playerId + "ah" + j + "\" style=\"display:inline;\"></div>";
         }
         playerAttributesDiv += "</div><br><div style='padding-right: 10px;'>";
         for (let j = 1; j < 11; j++) {
             playerAttributesDiv +=
-                "<div id=\"p" + playerId + "f" + j + "\" style=\"display:inline;\"></div>";
+                "<div id=\"p" + playerId + "af" + j + "\" style=\"display:inline;\"></div>";
         }
         playerAttributesDiv += "</div><br><div style='padding-right: 10px;'>";
         for (let j = 1; j < 11; j++) {
             playerAttributesDiv +=
-                "<div id=\"p" + playerId + "a" + j + "\" style=\"display:inline;\"></div>";
+                "<div id=\"p" + playerId + "aa" + j + "\" style=\"display:inline;\"></div>";
         }
         playerAttributesDiv += "</div></div>";
         playerDiv = "<div>" + playerNameDiv + playerAttributesDiv + "</div>";
-        document.getElementById("playerDiv").innerHTML = playerDiv;
+        document.getElementById("aplayerDiv").innerHTML = playerDiv;
 
         for (let k = 0; k < 11; k++) {
             for (let j = 1; j < 11; j++) {
                 if (health == k) {
-                    let elemString = "p" + playerId + "h" + j
+                    let elemString = "p" + playerId + "ah" + j
                     if (health < j) {
                         document.getElementById(elemString).appendChild(imgHealthEmpty.cloneNode(true));
                     } else {
@@ -79,7 +79,7 @@
                     }
                 }
                 if (food == k) {
-                    let elemString = "p" + playerId + "f" + j
+                    let elemString = "p" + playerId + "af" + j
                     if (food < j) {
                         document.getElementById(elemString).appendChild(imgFoodEmpty.cloneNode(true));
                     } else {
@@ -87,7 +87,7 @@
                     }
                 }
                 if (armor == k) {
-                    let elemString = "p" + playerId + "a" + j
+                    let elemString = "p" + playerId + "aa" + j
                     if (armor < j) {
                         document.getElementById(elemString).appendChild(imgArmorEmpty.cloneNode(true));
                     } else {

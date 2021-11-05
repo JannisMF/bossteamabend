@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import static de.tensing.bossteam.security.ApplicationUserPermission.LUCKYWHEEL_SPIN;
 import static de.tensing.bossteam.security.ApplicationUserRole.*;
 
 @Configuration
@@ -33,11 +32,6 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/index**", "/error**", "/css/*", "/js/*", "/img/*").permitAll()
-                .antMatchers("/luckywheel/spin").hasAnyRole(P1.name(), P2.name(), P3.name(), P4.name(), P5.name(),
-                        P6.name(), P7.name(), P8.name(), P9.name(), P10.name(), P11.name(), P12.name(), P13.name(),
-                        P14.name(), P15.name(), P16.name(), P17.name(), P18.name(), P19.name(), P20.name(),
-                        P21.name(), P21.name(), P22.name(), P23.name(), P24.name(), P25.name(), P26.name(),
-                        P27.name(), P28.name(), P29.name(), P30.name())
                 .antMatchers("/player/1").hasAnyRole(P1.name(), BOSSTEAMER.name(), ADMIN.name())
                 .antMatchers("/player/2").hasAnyRole(P2.name(), BOSSTEAMER.name(), ADMIN.name())
                 .antMatchers("/player/3").hasAnyRole(P3.name(), BOSSTEAMER.name(), ADMIN.name())
@@ -70,6 +64,12 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/player/30").hasAnyRole(P30.name(), BOSSTEAMER.name(), ADMIN.name())
                 .antMatchers("/player/**").hasAnyRole(BOSSTEAMER.name(), ADMIN.name())
                 .antMatchers("/game/progress/**").hasAnyRole(BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/luckywheel/spin/**").hasAnyRole(P1.name(), P2.name(), P3.name(), P4.name(), P5.name(),
+                        P6.name(), P7.name(), P8.name(), P9.name(), P10.name(), P11.name(), P12.name(), P13.name(),
+                        P14.name(), P15.name(), P16.name(), P17.name(), P18.name(), P19.name(), P20.name(),
+                        P21.name(), P21.name(), P22.name(), P23.name(), P24.name(), P25.name(), P26.name(),
+                        P27.name(), P28.name(), P29.name(), P30.name(), ADMIN.name())
+                .antMatchers("/luckywheel").hasAnyRole(BOSSTEAMER.name(), ADMIN.name())
                 .antMatchers("/**").hasRole(ADMIN.name())
                 .anyRequest()
                 .authenticated()

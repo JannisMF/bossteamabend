@@ -10,6 +10,7 @@ import static de.tensing.bossteam.entities.Settings.*;
 public class Game {
     public static List<Player> PLAYERS_LIST = new ArrayList<>();
     public static Queue<News> NEWS = new CircularFifoQueue<>(MAX_NUMBER_OF_NEWS);
+    public static Queue<Price> PRICE = new CircularFifoQueue<>(MAX_NUMBER_OF_PRICES);
 
     public static Integer PROGRESS = START_PROGRESS;
 
@@ -20,8 +21,6 @@ public class Game {
     public static Integer TIME_SEC = 600;
     public static String TIME = "404 Not Found";
 
-    public static Boolean WHEEL_SPINNING = false;
-
     static {
         IntStream
                 .rangeClosed(1, NUMBER_OF_PLAYERS)
@@ -30,6 +29,7 @@ public class Game {
                                 i,
                                 START_HEALTH,
                                 START_FOOD,
-                                START_ARMOR)));
+                                START_ARMOR,
+                                "Spieler " + i)));
     }
 }

@@ -1,6 +1,7 @@
 package de.tensing.bossteam.controller;
 
 import de.tensing.bossteam.entities.Player;
+import de.tensing.bossteam.utils.Actions;
 import de.tensing.bossteam.utils.QrCodeGenerator;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,87 +34,38 @@ public class PlayerController {
         mav.addObject("health", p.getHealth());
         mav.addObject("food", p.getFood());
         mav.addObject("armor", p.getArmor());
+        mav.addObject("name", p.getName());
         return mav;
     }
 
     @GetMapping(path = "{playerId}/addHealth")
     public String addHealth(@PathVariable("playerId") Integer playerId) {
-        Player p = PLAYERS_LIST.get(playerId - 1);
-        if (p.getHealth() < 10) {
-            p.setHealth(p.getHealth() + 1);
-            return "Das Leben von Spieler " + playerId + " wurde auf " + p.getHealth() + " gesetzt.";
-        }
-        return "Das Leben von Spieler " + playerId + " kann nicht höher als 10 werden.";
+        return Actions.addHealth(playerId);
     }
 
     @GetMapping(path = "{playerId}/removeHealth")
     public String removeHealth(@PathVariable("playerId") Integer playerId) {
-        Player p = PLAYERS_LIST.get(playerId - 1);
-        if (p.getArmor() > 0) {
-            p.setArmor(p.getArmor() - 1);
-            return "Der Spieler " + playerId + " hat Rüstung. Die Rüstung wurde auf " + p.getArmor() + " gesetzt.";
-        } else if (p.getHealth() > 0) {
-            p.setHealth(p.getHealth() - 1);
-        }
-        if (p.getHealth() == 0) {
-            return "TOT! Der Spieler " + playerId + " ist gestorben.";
-        }
-        return "Das Leben von Spieler " + playerId + " wurde auf " + p.getHealth() + " gesetzt.";
+        return Actions.removeHealth(playerId);
     }
 
     @GetMapping(path = "{playerId}/fillFood")
     public String fillFood(@PathVariable("playerId") Integer playerId) {
-        Player p = PLAYERS_LIST.get(playerId - 1);
-        if (!(p.getHealth() > 0)) {
-            return "Oops! Spieler " + playerId + " ist tot und kann kein Essen erhalten.";
-        }
-        if (p.getFood() < 10) {
-            p.setFood(10);
-            return "Das Essen von Spieler " + playerId + " wurde auf wieder aufgefüllt.";
-        }
-        return "Das Essen von Spieler " + playerId + " ist bereits aufgefüllt.";
+        return Actions.fillFood(playerId);
     }
 
     @GetMapping(path = "{playerId}/removeFood")
     public String removeFood(@PathVariable("playerId") Integer playerId) {
-        Player p = PLAYERS_LIST.get(playerId - 1);
-        if (p.getFood() > 0) {
-            p.setFood(p.getFood() - 1);
-            return "Das Essen von Spieler " + playerId + " wurde auf " + p.getFood() + " gesetzt.";
-        } else if (p.getFood() == 0) {
-            if (p.getHealth() > 0) {
-                p.setHealth(p.getHealth() - 1);
-            }
-            if (p.getHealth() == 0) {
-                return "TOT! Der Spieler " + playerId + " ist gestorben.";
-            }
-        }
-        return "Spieler " + playerId + " hat kein Essen mehr. Das Leben wurde auf " + p.getHealth() + " gesetzt.";
+        return Actions.removeFood(playerId);
     }
 
     @GetMapping(path = "{playerId}/addArmor")
     public String addArmor(@PathVariable("playerId") Integer playerId) {
-        Player p = PLAYERS_LIST.get(playerId - 1);
-        if (!(p.getHealth() > 0)) {
-            return "Oops! Spieler " + playerId + " ist tot und kann keine Rüstung erhalten.";
-        } else if (p.getArmor() < 10) {
-            p.setArmor(p.getArmor() + 1);
-            return "Die Rüstung von Spieler " + playerId + " wurde auf " + p.getArmor() + " gesetzt.";
-        }
-        return "Die Rüstung von Spieler " + playerId + " kann nicht höher als 10 werden.";
+        return Actions.addArmor(playerId);
     }
 
     @GetMapping(path = "{playerId}/respawnPlayer")
     public String respawnPlayer(@PathVariable("playerId") Integer playerId) {
-        Player p = PLAYERS_LIST.get(playerId - 1);
-        if (p.getHealth() > 0) {
-            return "Oops! Spieler " + playerId + " ist am Leben. Lebendige können nicht Wiederbelebt werden.";
-        } else {
-            p.setHealth(RESPAWN_HEALTH);
-            p.setFood(RESPAWN_FOOD);
-            p.setArmor(RESPAWN_ARMOR);
-            return "Respawned! Spieler " + playerId + " ist nun wieder lebendig.";
-        }
+        return Actions.respawnPlayer(playerId);
     }
 
     @GetMapping(path = "{playerId}/qrCode", produces = MediaType.IMAGE_JPEG_VALUE)

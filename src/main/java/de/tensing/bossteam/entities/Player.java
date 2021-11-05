@@ -14,4 +14,6 @@ public class Player {
     private Integer food;
 
     private Integer armor;
+
+    private String name;
 }

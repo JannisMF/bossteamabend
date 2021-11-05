@@ -12,6 +12,7 @@
     <div id="progressBarMask" style="width:100%;background-color:gray;">
         <div id="progressBar" style="width:0%;height:40px;background-color: green"></div>
     </div>
+    <br>
     <div>
         <div style="float:left;width:60%;" id="playersDiv">
             <script th:inline="javascript">
@@ -57,35 +58,29 @@
                 for (let i = 0; i < playerList.length; i++) {
                     let playerId = i + 1;
                     let playerDiv = "";
-                    let playerNameDiv = ""
-                    if (playerId < 10) {
-                        playerNameDiv =
-                            "<div style=\"display:inline;\"> " +
-                            "<p style=\"font-size:18pt;display:inline;padding-right:24px;font-family: monospace;\">Spieler " + playerId + "</p>" +
+                    let player = playerList[i];
+                    let name = player["name"];
+                    let playerNameDiv =
+                            "<div style=\"display:inline;float: left;width: 20%;\"> " +
+                            "<p style=\"font-size:18pt;display:inline;font-family: monospace;height: 18px\">" + name + "</p>" +
                             "</div>";
-                    } else {
-                        playerNameDiv =
-                            "<div style=\"display:inline;\"> " +
-                            "<p style=\"font-size:18pt;display:inline;padding-right:10px;font-family: monospace;\">Spieler " + playerId + "</p>" +
-                            "</div>";
-                    }
-                    let playerAttributesDiv = "<div style=display:inline;><div style='padding-right: 10px;display:inline;'>";
+                    let playerAttributesDiv = "<div style='float:right;width: 80%;height: 28px;vertical-align: bottom;line-height: 28px'><div style='padding-right: 10px;display:inline;height: 28px;vertical-align: middle;overflow: hidden'>";
                     for (let j = 1; j < 11; j++) {
                         playerAttributesDiv +=
-                            "<div id=\"p" + playerId + "h" + j + "\" style=\"display:inline;\"></div>";
+                            "<div id=\"p" + playerId + "h" + j + "\" style=\"display:inline;vertical-align: middle\"></div>";
                     }
                     playerAttributesDiv += "</div><div style='padding-right: 10px;display:inline;'>";
                     for (let j = 1; j < 11; j++) {
                         playerAttributesDiv +=
-                            "<div id=\"p" + playerId + "f" + j + "\" style=\"display:inline;\"></div>";
+                            "<div id=\"p" + playerId + "f" + j + "\" style=\"display:inline;vertical-align: middle\"></div>";
                     }
                     playerAttributesDiv += "</div><div style='padding-right: 10px;display:inline;'>";
                     for (let j = 1; j < 11; j++) {
                         playerAttributesDiv +=
-                            "<div id=\"p" + playerId + "a" + j + "\" style=\"display:inline;\"></div>";
+                            "<div id=\"p" + playerId + "a" + j + "\" style=\"display:inline;vertical-align: middle\"></div>";
                     }
                     playerAttributesDiv += "</div></div>";
-                    playerDiv = "<div>" + playerNameDiv + playerAttributesDiv + "</div>";
+                    playerDiv = "<div style=\"height: 28px;vertical-align: middle\">" + playerNameDiv + playerAttributesDiv + "</div>";
                     playersDiv += playerDiv;
                 }
                 document.getElementById("playersDiv").innerHTML = playersDiv;
