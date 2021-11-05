@@ -1,6 +1,5 @@
 package de.tensing.bossteam.utils;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -8,9 +7,14 @@ import java.time.temporal.ChronoUnit;
 
 public class TimeConverter {
     public static String secToMinAndSecString(int time) {
-        int mins = time / 60;
-        int secs = time % 60;
-        return secs < 10 ? mins + ":0" + secs : mins + ":" + secs;
+
+        if (time < 0) {
+            throw new RuntimeException("Cannot insert negative values");
+        }
+
+        int minutes = time / 60;
+        int seconds = time % 60;
+        return seconds < 10 ? minutes + ":0" + seconds : minutes + ":" + seconds;
     }
 
     public static String getCurrentTime() {
