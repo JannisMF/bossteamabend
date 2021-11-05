@@ -1,9 +1,9 @@
 function addProgress(serverUrl) {
-    httpRequestMakerGet(new XMLHttpRequest(), serverUrl + "addProgress")
+    httpRequestMakerGet(new XMLHttpRequest(), serverUrl + "progress/addProgress")
 }
 
 function removeProgress(serverUrl) {
-    httpRequestMakerGet(new XMLHttpRequest(), serverUrl + "removeProgress")
+    httpRequestMakerGet(new XMLHttpRequest(), serverUrl + "progress/removeProgress")
 }
 
 function sendNews(serverUrl) {
@@ -11,7 +11,7 @@ function sendNews(serverUrl) {
     let message = elem.value
     let json = JSON.stringify({message: message})
     elem.value = ""
-    httpRequestMakerPost(new XMLHttpRequest(), serverUrl + "sendNews", json)
+    httpRequestMakerPost(new XMLHttpRequest(), serverUrl + "progress/sendNews", json)
 }
 
 let httpRequestMakerGet = function (httpRequest, page) {

@@ -1,7 +1,7 @@
 function startGame(serverUrl) {
     let numberOfPlayers = document.getElementById("numberOfPlayers").value
     let json = JSON.stringify({numberOfPlayers: numberOfPlayers})
-    httpRequestMakerPost(new XMLHttpRequest(), serverUrl + "startGame", json)
+    httpRequestMakerPost(new XMLHttpRequest(), serverUrl + "settings/startGame", json)
 }
 
 let httpRequestMakerPost = function (httpRequest, page, json) {
