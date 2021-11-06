@@ -50,6 +50,7 @@ public class LuckyWheelController {
         mav.addObject("health", p.getHealth());
         mav.addObject("food", p.getFood());
         mav.addObject("armor", p.getArmor());
+        mav.addObject("name", p.getName());
         mav.addObject("serverUrl", getServerUrl(request));
 
         return mav;

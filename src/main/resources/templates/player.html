@@ -14,7 +14,7 @@
         let playerId = /*[[${playerId}]]*/ "t";
         let health = /*[[${health}]]*/ "t";
         let food = /*[[${food}]]*/ "t";
-        let armor = /*[[${armor}]]*/ "t";
+        let name = /*[[${name}]]*/ "t";
         /*]]>*/
 
         let size = "40px";
@@ -48,7 +48,7 @@
         let playerNameDiv = ""
         playerNameDiv =
             "<div style=\"display:inline;\"> " +
-            "<p style=\"font-size:40pt;display:inline;font-family: monospace;\">Spieler " + playerId + "</p><br><br>" +
+            "<p style=\"font-size:40pt;display:inline;font-family: monospace;\">" + name + "</p><br><br>" +
             "</div>";
         let playerAttributesDiv = "<div style=display:inline;><div style='padding-right: 10px;'>";
         for (let j = 1; j < 11; j++) {

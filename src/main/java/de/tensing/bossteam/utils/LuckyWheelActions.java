@@ -26,7 +26,9 @@ public class LuckyWheelActions {
     public static void loseFoodPlayer(Integer playerId) {
         int playerIndex = playerId - 1;
         Player p = PLAYERS_LIST.get(playerIndex);
-        p.setFood(0);
+        for (int i = 0; i < 4; i++) {
+            Actions.removeFoodNoHealth(p.getPlayerId());
+        }
     }
 
     public static void winHealthPlayer(Integer playerId) {
@@ -37,7 +39,6 @@ public class LuckyWheelActions {
 
     public static void loseFoodAll() {
         for (Player p : PLAYERS_LIST) {
-            Actions.removeFoodNoHealth(p.getPlayerId());
             Actions.removeFoodNoHealth(p.getPlayerId());
             Actions.removeFoodNoHealth(p.getPlayerId());
         }
@@ -55,8 +56,6 @@ public class LuckyWheelActions {
     }
 
     public static void winArmorPlayer(Integer playerId) {
-        Actions.addArmor(playerId);
-        Actions.addArmor(playerId);
         Actions.addArmor(playerId);
         Actions.addArmor(playerId);
         Actions.addArmor(playerId);

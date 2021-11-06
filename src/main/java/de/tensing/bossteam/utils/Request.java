@@ -11,7 +11,6 @@ public class Request {
             protocol = "http";
         }
         String serverUrl = protocol + "://" + request.getServerName() + ":" + request.getServerPort() + "/";
-        System.out.println(serverUrl);
         return serverUrl;
     }
 }
