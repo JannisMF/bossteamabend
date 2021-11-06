@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8" name="viewport"
           content="width=device-width, initial-scale=0.6, maximum-scale=0.6, user-scalable=0">
-    <meta http-equiv="refresh" content="5">
     <title th:text="'Spieler ' + ${playerId}">Hier könnte Ihre Werbung stehen</title>
     <script type="text/javascript" src="/js/computePlayer.js"></script>
 </head>
@@ -14,6 +13,7 @@
         let playerId = /*[[${playerId}]]*/ "t";
         let health = /*[[${health}]]*/ "t";
         let food = /*[[${food}]]*/ "t";
+        let armor = /*[[${armor}]]*/ "t";
         let name = /*[[${name}]]*/ "t";
         /*]]>*/
 

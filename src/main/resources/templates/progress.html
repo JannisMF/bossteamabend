@@ -17,18 +17,18 @@
         <input
                 type="image"
                 style="height:100px;width:450px"
-                th:attr="onclick=|addProgress()|"
+                th:attr="onclick=|addProgress('${serverUrl}')|"
                 src="../img/AddProgress.png">
         </input>
         <br><br>
         <input
                 type="image"
                 style="height:100px;width:450px"
-                th:attr="onclick=|removeProgress()|"
+                th:attr="onclick=|removeProgress('${serverUrl}')|"
                 src="../img/RemoveProgress.png">
         </input><br><br>
         <input type="text" id="message"><br><br>
-        <input type="submit" onclick="sendNews()" value="News veröffentlichen">
+        <input type="submit" th:attr="onclick=|sendNews('${serverUrl}')|" value="News veröffentlichen">
     </div>
     <br><br>
     <div id="playersDiv">

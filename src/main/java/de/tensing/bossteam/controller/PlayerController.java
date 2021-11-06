@@ -1,13 +1,13 @@
 package de.tensing.bossteam.controller;
 
 import de.tensing.bossteam.entities.Player;
+import de.tensing.bossteam.entities.dtos.NameDTO;
 import de.tensing.bossteam.utils.Actions;
 import de.tensing.bossteam.utils.QrCodeGenerator;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -39,6 +39,35 @@ public class PlayerController {
         mav.addObject("serverUrl", getServerUrl(request));
         return mav;
     }
+
+    @GetMapping(path = "rename")
+    public ModelAndView renamePage(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("rename");
+        mav.addObject("serverUrl", getServerUrl(request));
+        return mav;
+    }
+
+    @PostMapping(value = "rename/changeName",
+            produces = "application/json",
+            consumes = "application/json")
+    public String changeName(@RequestBody NameDTO nameDTO) {
+        ModelAndView mav = new ModelAndView("spin");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String playerUsername = auth.getName();
+        Integer playerId = Integer.parseInt(playerUsername);
+        Player p = PLAYERS_LIST.get(playerId - 1);
+
+        String newName = nameDTO.getName();
+
+        if (newName.length() > 12) {
+            return "Dein Name darf Maximal 12 Zeichen lang sein";
+        }
+
+        p.setName(newName);
+
+        return "Name geändert!";
+    }
+
 
     @GetMapping(path = "{playerId}/addHealth")
     public String addHealth(@PathVariable("playerId") Integer playerId) {
@@ -83,5 +112,4 @@ public class PlayerController {
         ImageIO.write(image, "jpg", bao);
         return bao.toByteArray();
     }
-
 }
