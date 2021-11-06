@@ -4,12 +4,19 @@ import de.tensing.bossteam.entities.News;
 import de.tensing.bossteam.entities.dtos.NewsDTO;
 import de.tensing.bossteam.entities.dtos.NumberOfPlayersDTO;
 import de.tensing.bossteam.utils.Actions;
+import de.tensing.bossteam.utils.QrCodeGenerator;
 import de.tensing.bossteam.utils.TimeConverter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 import static de.tensing.bossteam.entities.Game.*;
 import static de.tensing.bossteam.entities.Settings.MAX_PROGRESS;
@@ -74,5 +81,15 @@ public class GameController {
         NEWS.add(news);
 
         return "News erschienen!";
+    }
+
+    @GetMapping(path = "progress/qrCode", produces = MediaType.IMAGE_JPEG_VALUE)
+    public byte[] generateQrCode() throws IOException {
+        String url = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/..").build().normalize().toString();
+        BufferedImage image = QrCodeGenerator.generateQrCodeFrom(url, 400, 400);
+
+        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+        ImageIO.write(image, "jpg", bao);
+        return bao.toByteArray();
     }
 }

@@ -75,21 +75,14 @@
             for (let i = 0; i < playerList.length; i++) {
                 let playerId = i + 1;
                 let player = playerList[i];
+                let name = player["name"];
                 let playerDiv = "";
-                let playerNameDiv = ""
                 if (player["health"] == 0) {
-                    if (playerId < 10) {
-                        playerNameDiv =
-                            "<div style=\"display:inline;\"> " +
-                            "<p style=\"font-size:20pt;display:inline;padding-right:25px;font-family: monospace;\">Spieler " + playerId + "</p>" +
-                            "</div>";
-                    } else {
-                        playerNameDiv =
-                            "<div style=\"display:inline;\"> " +
-                            "<p style=\"font-size:20pt;display:inline;padding-right:10px;font-family: monospace;\">Spieler " + playerId + "</p>" +
-                            "</div>";
-                    }
-                    let playerAttributesDiv = "<div style=display:inline;><div style='padding-right: 10px;display:inline;'>";
+                    let playerNameDiv =
+                        "<div style=\"display:inline;float: left;width: 200px;\"> " +
+                        "<p style=\"font-size:18pt;width: 600 px;display:inline;font-family: monospace;height: 18px\">" + name + "</p>" +
+                        "</div>";
+                    let playerAttributesDiv = "<div style='float:left;height: 28px;vertical-align: bottom;line-height: 28px'><div style='padding-right: 10px;display:inline;height: 28px;vertical-align: middle;overflow: hidden'>";
                     for (let j = 1; j < 11; j++) {
                         playerAttributesDiv +=
                             "<div id=\"p" + playerId + "h" + j + "\" style=\"display:inline;\"></div>";
@@ -105,7 +98,7 @@
                             "<div id=\"p" + playerId + "a" + j + "\" style=\"display:inline;\"></div>";
                     }
                     playerAttributesDiv += "</div></div>";
-                    playerDiv = "<div>" + playerNameDiv + playerAttributesDiv + "</div>";
+                    playerDiv = "<div>" + playerNameDiv + playerAttributesDiv + "</div><br><br>";
                     playersDiv += playerDiv;
                 }
             }

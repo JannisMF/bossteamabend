@@ -67,7 +67,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                         P21.name(), P21.name(), P22.name(), P23.name(), P24.name(), P25.name(), P26.name(),
                         P27.name(), P28.name(), P29.name(), P30.name(), ADMIN.name())
                 .antMatchers("/player/**").hasAnyRole(BOSSTEAMER.name(), ADMIN.name())
-                .antMatchers("/game/progress/**", "/luckywheel", "/luckywheel/").hasAnyRole(BOSSTEAMER.name(), ADMIN.name())
+                .antMatchers("/game/progress/**", "/luckywheel", "/luckywheel/", "/luckywheel/spin/qrCode").hasAnyRole(BOSSTEAMER.name(), ADMIN.name())
                 .antMatchers("/**").hasRole(ADMIN.name())
                 .anyRequest()
                 .authenticated()

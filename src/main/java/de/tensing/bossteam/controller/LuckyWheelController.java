@@ -7,14 +7,21 @@ import de.tensing.bossteam.entities.Price;
 import de.tensing.bossteam.entities.dtos.LuckyWheelPriceDTO;
 import de.tensing.bossteam.entities.enums.LuckyWheelPrice;
 import de.tensing.bossteam.utils.Actions;
+import de.tensing.bossteam.utils.QrCodeGenerator;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +61,16 @@ public class LuckyWheelController {
         mav.addObject("serverUrl", getServerUrl(request));
 
         return mav;
+    }
+
+    @GetMapping(path = "spin/qrCode", produces = MediaType.IMAGE_JPEG_VALUE)
+    public byte[] generateQrCode() throws IOException {
+        String url = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/..").build().normalize().toString();
+        BufferedImage image = QrCodeGenerator.generateQrCodeFrom(url, 400, 400);
+
+        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+        ImageIO.write(image, "jpg", bao);
+        return bao.toByteArray();
     }
 
     @GetMapping(path = "spin/spin")
