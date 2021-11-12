@@ -150,7 +150,7 @@ public class LuckyWheelController {
         }
 
         String message =
-                p.getName() + " hat am Glücksrad gedreht und hat folgenden Preis gewonnen:\n"
+                "Preis von " + p.getName() + " am Glücksrad:\n"
                         + priceDTO.getDisplayText();
 
         if (priceDTO.getDisplayText().startsWith("Alle")) {
@@ -158,8 +158,9 @@ public class LuckyWheelController {
             NEWS.add(news);
         } else if (priceDTO.getDisplayText().startsWith("Ein")) {
             message =
-                    p.getName() + " hat am Glücksrad gedreht und hat folgenden Preis gewonnen:\n"
-                            + priceDTO.getDisplayText() + ". Der Pechvogel ist: " + unluckyPlayer.getName();
+                    "Preis von " + p.getName() + " am Glücksrad:\n" +
+                            priceDTO.getDisplayText() + ".\n" +
+                            "Der Pechvogel ist: " + unluckyPlayer.getName();
             News news = new News(getCurrentTime(), message);
             NEWS.add(news);
         }
